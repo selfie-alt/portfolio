@@ -18,6 +18,62 @@ denniedelfin-art/
     └── audio/            → qui vanno i tuoi mp3 (dj set, beatmaking)
 ```
 
+## Cambiare quante icone mostrare (desktop e dock)
+
+Apri `js/main.js`: in cima al file trovi due liste (`DESKTOP_APPS` e
+`DOCK_APPS`) e due numeri:
+
+```js
+const DESKTOP_ICON_COUNT = 6;   // quante icone-app sul desktop / home iOS
+const DOCK_ICON_COUNT = 6;      // quante icone nel dock
+```
+
+Per **mostrarne di meno**, abbassa il numero (es. `DOCK_ICON_COUNT = 3`
+mostra solo le prime 3 della lista `DOCK_APPS`).
+Per **aggiungerne altre**, aggiungi una nuova riga dentro `DESKTOP_APPS` o
+`DOCK_APPS` con lo stesso formato delle altre (serve anche l'icona PNG
+corrispondente dentro `assets/icons/`), poi alza il numero.
+
+Le posizioni sul desktop vengono ricalcolate automaticamente in modo
+sparso-ma-centrato per qualunque quantità — non serve toccare percentuali
+o coordinate a mano, e le icone non si sovrappongono mai.
+
+Per nascondere del tutto le icone "file" (scatto-01.jpg, reel-01.mp4,
+beat-01.mp3), metti `SHOW_FILE_ICONS = false` nello stesso file.
+
+## Icone personalizzate (PNG)
+
+Tutte le icone principali (app del desktop, dock) sono immagini PNG dentro
+`assets/icons/`, non più disegni SVG — così puoi sostituirle facilmente
+con le tue:
+
+```
+assets/icons/
+├── about.png         → icona "About Me"
+├── notes.png         → icona "Notes"
+├── foto.png           → icona "Street Photography"
+├── design.png         → icona "Design"
+├── musica.png         → icona "Musica"
+├── pittura.png         → icona "Pittura"
+├── instagram.png       → icona Instagram nel dock
+├── photoshop.png       → icona "Editor foto" nel dock
+├── illustrator.png     → icona "Vettoriale" nel dock
+└── premiere.png        → icona "Video" nel dock
+```
+
+Per sostituirle: crea la tua immagine (consigliato **PNG con sfondo
+trasparente**, quadrata, almeno 256×256px) e salvala con **lo stesso nome
+esatto** del file che vuoi sostituire — verrà usata automaticamente,
+senza bisogno di toccare il codice HTML o CSS.
+
+Il colore di sfondo colorato dietro l'icona (il "tile" arrotondato) resta
+quello già impostato nel CSS — la tua PNG ci si sovrappone sopra. Se vuoi
+cambiare anche quel colore, cerca nel file `css/style.css` le classi
+`.foto-grad`, `.design-grad`, `.musica-grad`, `.pittura-grad`,
+`.about-grad`, `.notes-grad` (per le icone del desktop) oppure gli stili
+inline `background: linear-gradient(...)` nell'HTML per le icone del dock
+(Instagram, Photoshop, ecc.).
+
 ## Cosa devi personalizzare
 
 1. **Testi segnaposto**: cerca "segnaposto" dentro `index.html` (bio, note,

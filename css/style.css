@@ -91,6 +91,13 @@
     text-align:center;
   }
   .d-icon .icon-glyph svg, .app-icon .icon-glyph svg{ width: 24px; height:24px; }
+  .icon-glyph .icon-img{
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+    -webkit-user-drag: none;
+    pointer-events: none;
+  }
 
   .dock{
     position:absolute;
@@ -115,6 +122,13 @@
   }
   .dock-icon:hover{ transform: translateY(-6px) scale(1.08); }
   .dock-icon svg{ width:20px; height:20px; flex-shrink:0; }
+  .dock-icon .icon-img{
+    width: 55%;
+    height: 55%;
+    object-fit: contain;
+    -webkit-user-drag: none;
+    pointer-events: none;
+  }
 
   /* ---------------- FILE ICONS (foto/video/audio) ---------------- */
 
