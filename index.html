@@ -3,149 +3,147 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mario Rossi | Portfolio</title>
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
+<title>Nome Cognome — Creative Artist</title>
 
-body {
-    background: #0f172a;
-    color: white;
-}
-
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 30px;
-}
-
-.container {
-    max-width: 800px;
-}
-
-h1 {
-    font-size: 3.5rem;
-    margin-bottom: 20px;
-}
-
-h1 span {
-    color: #38bdf8;
-}
-
-p {
-    font-size: 1.2rem;
-    color: #cbd5e1;
-    line-height: 1.6;
-}
-
-.buttons {
-    margin-top: 35px;
-}
-
-.btn {
-    display: inline-block;
-    padding: 14px 30px;
-    margin: 10px;
-    border-radius: 30px;
-    text-decoration: none;
-    color: white;
-    background: #38bdf8;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background: #0284c7;
-}
-
-.projects {
-    background: white;
-    color: #0f172a;
-    padding: 60px 30px;
-    text-align: center;
-}
-
-.cards {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 30px;
-}
-
-.card {
-    width: 250px;
-    padding: 25px;
-    border-radius: 15px;
-    background: #f1f5f9;
-}
-
-footer {
-    padding: 20px;
-    text-align: center;
-    background: #020617;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<section class="hero">
-<div class="container">
+<div class="desktop">
 
-<h1>Ciao, sono <span>Mario</span></h1>
+<header>
+    <div class="logo">NOME COGNOME</div>
+    <div class="status">Creative Studio</div>
+</header>
+
+
+<div class="icons">
+
+<button onclick="openWindow('visual')">
+📁<span>Visual</span>
+</button>
+
+<button onclick="openWindow('music')">
+🎵<span>Music</span>
+</button>
+
+<button onclick="openWindow('about')">
+👤<span>About</span>
+</button>
+
+<button onclick="openWindow('contact')">
+✉️<span>Contact</span>
+</button>
+
+</div>
+
+
+<!-- VISUAL WINDOW -->
+
+<div class="window" id="visual">
+
+<div class="bar">
+Visual Archive
+<button onclick="closeWindow('visual')">×</button>
+</div>
+
+<div class="content">
+
+<h2>Photography & Design</h2>
+
+<div class="gallery">
+
+<img src="images/photo1.jpg">
+<img src="images/photo2.jpg">
+<img src="images/photo3.jpg">
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- MUSIC WINDOW -->
+
+<div class="window" id="music">
+
+<div class="bar">
+Music Lab
+<button onclick="closeWindow('music')">×</button>
+</div>
+
+<div class="content">
+
+<h2>DJ / Beatmaking</h2>
 
 <p>
-Designer / Developer / Creativo digitale.
-Creo soluzioni moderne per il web e trasformo idee in esperienze digitali.
+Electronic music, beats and sound experiments.
 </p>
 
-<div class="buttons">
-<a class="btn" href="#progetti">I miei lavori</a>
-<a class="btn" href="mailto:tuaemail@email.com">Contattami</a>
-</div>
+<br>
 
-</div>
-</section>
+<a href="#" class="link">
+Listen
+</a>
 
-
-<section class="projects" id="progetti">
-
-<h2>Progetti</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>Progetto 1</h3>
-<p>Descrizione del tuo lavoro.</p>
-</div>
-
-<div class="card">
-<h3>Progetto 2</h3>
-<p>Descrizione del tuo lavoro.</p>
-</div>
-
-<div class="card">
-<h3>Progetto 3</h3>
-<p>Descrizione del tuo lavoro.</p>
 </div>
 
 </div>
 
-</section>
+
+<!-- ABOUT WINDOW -->
+
+<div class="window" id="about">
+
+<div class="bar">
+About Me
+<button onclick="closeWindow('about')">×</button>
+</div>
+
+<div class="content">
+
+<h2>Creative Artist</h2>
+
+<p>
+I explore the connection between images,
+design and sound.
+</p>
+
+</div>
+
+</div>
 
 
-<footer>
-© 2026 Mario Rossi - Portfolio
-</footer>
+<!-- CONTACT WINDOW -->
+
+<div class="window" id="contact">
+
+<div class="bar">
+Contact
+<button onclick="closeWindow('contact')">×</button>
+</div>
+
+<div class="content">
+
+<h2>Let's collaborate</h2>
+
+<p>
+email@email.com
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
