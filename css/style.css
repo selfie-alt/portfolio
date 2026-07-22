@@ -1,0 +1,450 @@
+:root{
+    --bg: #EEF0EE;
+    --panel: #FFFFFF;
+    --ink: #14181A;
+    --ink-soft: #5B6461;
+    --line: #D8DEDA;
+    --deep: #1C4B4A;
+    --pop: #D6572E;
+    --radius: 16px;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Work Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    height: 100vh;
+    overflow: hidden;
+  }
+  a{ color: inherit; text-decoration: none; }
+  button{ font-family: inherit; }
+  .mono{ font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.02em; }
+  svg{ display:block; }
+
+  /* ---------------- GRADIENTS PER DISCIPLINA ---------------- */
+  .foto-grad{ background: linear-gradient(155deg, #1C4B4A, #3a8f80); }
+  .design-grad{ background: linear-gradient(155deg, #2B3A67, #5C7AEA); }
+  .musica-grad{ background: linear-gradient(155deg, #4A1E4D, #A24BA2); }
+  .pittura-grad{ background: linear-gradient(155deg, #7A2E1E, #D6572E); }
+  .about-grad{ background: linear-gradient(155deg, #3A3F42, #6B7478); }
+  .notes-grad{ background: linear-gradient(155deg, #6B5B1E, #C9A227); }
+
+  /* ================= DESKTOP (macOS) ================= */
+
+  .menubar{
+    position: fixed;
+    top:0; left:0; right:0;
+    height: 32px;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 0 16px;
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    font-size: 12px;
+    z-index: 30;
+  }
+  .mb-left{ display:flex; align-items:center; gap:8px; color: var(--ink); }
+  .mb-left .dot{ width:8px; height:8px; border-radius:50%; background: var(--pop); }
+  .mb-right{ color: var(--ink-soft); }
+
+  .desktop{
+    position: fixed;
+    inset: 32px 0 0 0;
+    background:
+      linear-gradient(155deg, rgba(10,12,11,0.42), rgba(10,12,11,0.52)),
+      url('../assets/images/sfondo-desktop.jpg');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
+
+  .desktop-icons{
+    position:absolute;
+    inset: 0;
+  }
+
+  .d-icon{ position:absolute; }
+  .d-icon, .app-icon{
+    background:none; border:none; cursor:pointer;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    width: 84px;
+  }
+  .d-icon .icon-glyph, .app-icon .icon-glyph{
+    width: 52px; height: 52px;
+    border-radius: 30% / 32%;
+    display:flex; align-items:center; justify-content:center;
+    color:#fff;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    transition: transform .15s ease;
+  }
+  .d-icon:hover .icon-glyph{ transform: translateY(-2px) scale(1.04); }
+  .d-icon:active .icon-glyph{ transform: scale(0.96); }
+  .d-icon span, .app-icon span{
+    font-size: 12px;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.45);
+    text-align:center;
+  }
+  .d-icon .icon-glyph svg, .app-icon .icon-glyph svg{ width: 24px; height:24px; }
+
+  .dock{
+    position:absolute;
+    bottom: 18px; left:50%;
+    transform: translateX(-50%);
+    display:flex;
+    align-items:flex-end;
+    gap: 14px;
+    padding: 10px 16px;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(16px);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .dock-icon{
+    width: 44px; height: 44px;
+    border-radius: 30%;
+    display:flex; align-items:center; justify-content:center;
+    color:#fff;
+    border: none; cursor:pointer;
+    transition: transform .15s ease;
+  }
+  .dock-icon:hover{ transform: translateY(-6px) scale(1.08); }
+  .dock-icon svg{ width:20px; height:20px; flex-shrink:0; }
+
+  /* ---------------- FILE ICONS (foto/video/audio) ---------------- */
+
+  .file-icon .icon-glyph{
+    width: 52px; height: 52px;
+    border-radius: 6px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    position: relative;
+    overflow: hidden;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .file-thumb-photo{
+    background: linear-gradient(180deg, #BFE0F0 0%, #BFE0F0 58%, #6FAE6B 58%, #6FAE6B 100%);
+    width:100%; height:100%;
+  }
+  .file-thumb-photo::after{
+    content:"";
+    position:absolute;
+    right: 8px; top: 8px;
+    width: 12px; height:12px;
+    border-radius:50%;
+    background:#F4D35E;
+  }
+  .file-thumb-video{
+    width:100%; height:100%;
+    background: #1B1E20;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .file-thumb-video svg{ width:20px; height:20px; }
+  .file-thumb-audio{
+    width:100%; height:100%;
+    background: linear-gradient(155deg, #241645, #5A2FBF);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .file-thumb-audio svg{ width:22px; height:22px; }
+
+  /* ---------------- QUICK LOOK ---------------- */
+
+  .qlook{
+    position: fixed;
+    top:50%; left:50%;
+    width: min(560px, 88vw);
+    max-height: 80vh;
+    background: #1C1E1F;
+    border-radius: 14px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.45);
+    z-index: 55;
+    display:none;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translate(-50%,-50%) scale(0.82);
+    opacity: 0;
+    transition: transform .32s cubic-bezier(.2,.9,.25,1.25), opacity .22s ease;
+  }
+  .qlook.open{ display:flex; }
+  .qlook.show{ transform: translate(-50%,-50%) scale(1); opacity:1; }
+  .qlook-close{
+    position:absolute; top:10px; right:10px;
+    width: 26px; height:26px;
+    border-radius:50%;
+    background: rgba(255,255,255,0.12);
+    border:none; color:#fff; cursor:pointer;
+    font-size:14px; line-height:1;
+    z-index: 2;
+  }
+  .qlook-media{
+    flex:1;
+    display:flex; align-items:center; justify-content:center;
+    background:#000;
+    min-height: 260px;
+  }
+  .qlook-media img{ width:100%; height:100%; object-fit:contain; display:block; }
+  .qlook-media video{ width:100%; max-height: 60vh; display:block; }
+  .qlook-media.audio-view{
+    background: linear-gradient(155deg, #241645, #5A2FBF);
+    flex-direction:column; gap:18px; padding: 30px;
+  }
+  .qlook-media.audio-view svg{ width:56px; height:56px; }
+  .qlook-media.audio-view audio{ width: 100%; max-width: 340px; }
+  .qlook-caption{
+    padding: 10px 16px;
+    font-size: 12.5px;
+    color: #C9CDCE;
+    background: #1C1E1F;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .dock-icon.text{ font-size: 12px; font-weight:600; }
+
+  /* ---------------- WINDOWS ---------------- */
+
+  .backdrop{
+    position:fixed; inset:0;
+    background: rgba(10,14,13,0.35);
+    z-index: 40;
+    opacity:0; pointer-events:none;
+    transition: opacity .2s ease;
+  }
+  .backdrop.show{ opacity:1; pointer-events:auto; }
+
+  .window{
+    position: fixed;
+    top: 50%; left:50%;
+    transform: translate(-50%,-50%) scale(0.9);
+    opacity: 0;
+    width: min(640px, 88vw);
+    max-height: 74vh;
+    background: var(--panel);
+    border-radius: var(--radius);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+    z-index: 50;
+    display:none;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform .3s cubic-bezier(.2,.9,.25,1.2), opacity .2s ease;
+  }
+  .window.open{ display:flex; }
+  .window.show{ transform: translate(-50%,-50%) scale(1); opacity:1; }
+  .window.wide{ width: min(760px, 90vw); }
+
+  .window-titlebar{
+    display:flex; align-items:center; gap:12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    flex-shrink:0;
+  }
+  .chrome{ display:flex; gap:8px; }
+  .chrome button{
+    width:12px; height:12px; border-radius:50%; border:none; cursor:pointer; padding:0;
+  }
+  .dot-red{ background:#E5564C; }
+  .dot-amber{ background:#E8B23D; }
+  .dot-green{ background:#4EAE7D; }
+  .window-title{ font-size: 13px; color: var(--ink-soft); }
+  .back-btn{
+    display:none;
+    background:none; border:none; cursor:pointer;
+    font-size: 14px; color: var(--deep); font-weight:600;
+    align-items:center; gap:4px;
+  }
+
+  .window-body{
+    padding: 20px 22px 24px;
+    overflow-y:auto;
+  }
+  .window-body p{ color: var(--ink-soft); font-size:14px; line-height:1.7; max-width: 58ch; }
+
+  .note-item{ padding: 10px 0; border-bottom: 1px dashed var(--line); font-size:13px; }
+  .note-item:last-child{ border-bottom:none; }
+  .note-date{ display:block; font-size:11px; color: var(--ink-soft); margin-bottom:2px; }
+
+  .works-grid{
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 14px;
+    margin-top: 4px;
+  }
+  .work-card{ border-radius: 10px; overflow:hidden; border:1px solid var(--line); }
+  .work-thumb{
+    aspect-ratio: 4/5;
+    opacity:.92;
+  }
+  .work-meta{ padding: 10px 12px; }
+  .work-title{ font-family:'Fraunces', serif; font-size:14px; display:block; }
+  .work-tag{ font-size:11px; color: var(--ink-soft); }
+
+  /* ---------------- NOTES APP ---------------- */
+
+  #win-notes .window-body{ padding:0; }
+  .notes-app{ display:flex; height: 46vh; min-height: 320px; }
+  .notes-list{
+    width: 190px;
+    flex-shrink:0;
+    background: #F6F5F1;
+    border-right: 1px solid var(--line);
+    overflow-y:auto;
+  }
+  .notes-list-item{
+    display:block;
+    width:100%;
+    text-align:left;
+    background:none;
+    border:none;
+    border-bottom: 1px solid var(--line);
+    padding: 12px 14px;
+    cursor:pointer;
+  }
+  .notes-list-item .n-title{
+    font-family:'Fraunces', serif;
+    font-size: 13.5px;
+    display:block;
+    margin-bottom: 3px;
+  }
+  .notes-list-item .n-preview{
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    display:block;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .notes-list-item.active{ background: #FCEFC7; }
+  .notes-detail{
+    flex:1;
+    padding: 20px 22px;
+    overflow-y:auto;
+  }
+  .notes-detail .n-date{
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+    display:block;
+  }
+  .notes-detail .n-body{
+    font-family:'Fraunces', serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+
+  /* ---------------- MUSICA APP ---------------- */
+
+  .track-list{ display:flex; flex-direction:column; gap: 2px; }
+  .track-row{
+    display:flex; align-items:center; gap:12px;
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .track-row:last-child{ border-bottom:none; }
+  .track-num{ width:18px; font-size:12px; color: var(--ink-soft); flex-shrink:0; }
+  .track-icon{
+    width:34px; height:34px; border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; flex-shrink:0;
+  }
+  .track-icon svg{ width:16px; height:16px; }
+  .track-info{ flex:1; min-width:0; }
+  .track-name{ font-size: 13.5px; display:block; }
+  .track-sub{ font-size: 11px; color: var(--ink-soft); }
+  .track-row audio{
+    height: 30px;
+    max-width: 150px;
+  }
+  .music-note{
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+    padding: 10px 12px;
+    background: #F6F5F1;
+    border-radius: 8px;
+  }
+
+  /* ================= MOBILE (iOS) ================= */
+
+  .ios-status, .ios-home{ display:none; }
+
+  @media (max-width: 860px){
+    .menubar, .desktop, .dock{ display:none; }
+
+    body{ overflow-y: auto; height:auto; min-height:100vh; }
+
+    .ios-status{
+      display:flex; justify-content:space-between; align-items:center;
+      padding: 14px 22px 4px;
+      font-size: 13px;
+      background: linear-gradient(180deg, #E4EAE6, transparent);
+    }
+
+    .ios-home{
+      display:block;
+      min-height: 100vh;
+      background:
+        linear-gradient(160deg, rgba(10,12,11,0.42), rgba(10,12,11,0.52)),
+        url('../assets/images/sfondo-desktop.jpg');
+      background-size: cover;
+      background-position: center;
+      padding: 10px 22px 110px;
+    }
+
+    .ios-greeting{ padding: 18px 4px 26px; color:#fff; }
+    .ios-greeting h1{
+      font-family:'Fraunces', serif; font-weight:500;
+      font-size: 26px; margin-bottom:6px;
+    }
+    .ios-greeting p{ font-size: 13px; opacity:.85; max-width: 34ch; }
+
+    .app-grid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px 10px;
+    }
+    .app-icon .icon-glyph{ width:56px; height:56px; border-radius:26%; margin: 0 auto; }
+    .app-icon span{ font-size: 11px; }
+
+    .ios-dock{
+      position: fixed;
+      bottom: 18px; left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 32px);
+      max-width: 420px;
+      display:flex;
+      justify-content: space-around;
+      padding: 12px 18px;
+      background: rgba(255,255,255,0.22);
+      backdrop-filter: blur(18px);
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.3);
+      z-index: 25;
+    }
+    .ios-dock .dock-icon{ width:48px; height:48px; border-radius:26%; }
+
+    .window{
+      position: fixed; inset: 0;
+      width:100%; max-height:none; border-radius:0;
+      z-index: 60;
+      transform: translateY(5%);
+    }
+    .window.show{ transform: translateY(0); }
+    .window-titlebar{ padding: 16px 18px; padding-top: max(16px, env(safe-area-inset-top)); }
+    .chrome{ display:none; }
+    .back-btn{ display:flex; }
+    .works-grid{ grid-template-columns: 1fr 1fr; }
+    .notes-app{ height: calc(100vh - 60px); }
+    .notes-list{ width: 130px; }
+    .notes-list-item .n-preview{ display:none; }
+    .track-row{ flex-wrap: wrap; }
+    .track-row audio{ order:4; width:100%; max-width:none; margin-top:6px; }
+  }
+
+  @media (max-width: 380px){
+    .app-grid{ grid-template-columns: repeat(3,1fr); }
+  }

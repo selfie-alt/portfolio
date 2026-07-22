@@ -2,148 +2,383 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Dennie Delfin — Creative Artist</title>
-
-<link rel="stylesheet" href="style.css">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Dennie Delfin — Portfolio</title>
+<meta name="description" content="Portfolio creativo di Dennie Delfin — street photography, design, musica, pittura.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
+<!-- ================= DESKTOP ================= -->
+
+<div class="menubar">
+  <div class="mb-left"><span class="dot"></span><span>dennie delfin</span></div>
+  <div class="mb-right mono" id="clockDesktop">—</div>
+</div>
+
 <div class="desktop">
+  <div class="desktop-icons">
+    <button class="d-icon" data-window="about" style="left:26%; top:16%;">
+      <span class="icon-glyph about-grad">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20c0-4.2 3.4-6.4 7.5-6.4s7.5 2.2 7.5 6.4"/></svg>
+      </span>
+      <span>About Me</span>
+    </button>
+    <button class="d-icon" data-window="notes" style="left:64%; top:12%;">
+      <span class="icon-glyph notes-grad">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="7" x2="19" y2="7"/><line x1="5" y1="12" x2="19" y2="12"/><line x1="5" y1="17" x2="13" y2="17"/></svg>
+      </span>
+      <span>Notes</span>
+    </button>
+    <button class="d-icon" data-window="foto" style="left:18%; top:44%;">
+      <span class="icon-glyph foto-grad">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7.5" width="18" height="12.5" rx="2"/><circle cx="12" cy="13.5" r="3.2"/><path d="M9 7.5l1.2-2h3.6l1.2 2"/></svg>
+      </span>
+      <span>Street Ph.</span>
+    </button>
+    <button class="d-icon" data-window="design" style="left:74%; top:38%;">
+      <span class="icon-glyph design-grad">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1-4 10-10 3 3-10 10-4 1z"/><path d="M14 7l3 3"/></svg>
+      </span>
+      <span>Design</span>
+    </button>
+    <button class="d-icon" data-window="musica" style="left:44%; top:34%;">
+      <span class="icon-glyph musica-grad">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2.6" y="13" width="4.2" height="6.5" rx="2"/><rect x="17.2" y="13" width="4.2" height="6.5" rx="2"/></svg>
+      </span>
+      <span>Musica</span>
+    </button>
+    <button class="d-icon" data-window="pittura" style="left:56%; top:64%;">
+      <span class="icon-glyph pittura-grad">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c4.9 0 8.5 3.4 8.5 7.4 0 2.6-1.7 3.6-3.4 3.6h-1.8c-1 0-1.6.9-1.1 1.8.5 1 .1 2.2-1 2.7-.7.3-1.5.5-2.2.5-4.7 0-8.5-3.6-8.5-8s3.8-8 8.5-8z"/><circle cx="8.2" cy="10.5" r=".9" fill="currentColor" stroke="none"/><circle cx="12" cy="8" r=".9" fill="currentColor" stroke="none"/><circle cx="15.6" cy="10.2" r=".9" fill="currentColor" stroke="none"/></svg>
+      </span>
+      <span>Pittura</span>
+    </button>
 
-<header>
-    <div class="logo">DENNIE DELFIN</div>
-    <div class="status">Creative Studio</div>
-</header>
+    <button class="d-icon file-icon" data-qlook="photo" style="left:20%; top:66%;">
+      <span class="icon-glyph"><span class="file-thumb-photo"></span></span>
+      <span>scatto-01.jpg</span>
+    </button>
+    <button class="d-icon file-icon" data-qlook="video" style="left:70%; top:14%;">
+      <span class="icon-glyph">
+        <span class="file-thumb-video">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"><path d="M8 6l11 6-11 6V6z"/></svg>
+        </span>
+      </span>
+      <span>reel-01.mp4</span>
+    </button>
+    <button class="d-icon file-icon" data-qlook="audio" style="left:10%; top:22%;">
+      <span class="icon-glyph">
+        <span class="file-thumb-audio">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M4 12v0M8 8v8M12 5v14M16 8v8M20 12v0"/></svg>
+        </span>
+      </span>
+      <span>beat-01.mp3</span>
+    </button>
+  </div>
 
-
-<div class="icons">
-
-<button onclick="openWindow('visual')">
-📁<span>Visual</span>
-</button>
-
-<button onclick="openWindow('music')">
-🎵<span>Music</span>
-</button>
-
-<button onclick="openWindow('about')">
-👤<span>About</span>
-</button>
-
-<button onclick="openWindow('contact')">
-✉️<span>Contact</span>
-</button>
-
+  <div class="dock">
+    <button class="dock-icon about-grad" data-window="about" title="About Me">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20c0-4.2 3.4-6.4 7.5-6.4s7.5 2.2 7.5 6.4"/></svg>
+    </button>
+    <button class="dock-icon notes-grad" data-window="notes" title="Notes">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="7" x2="19" y2="7"/><line x1="5" y1="12" x2="19" y2="12"/><line x1="5" y1="17" x2="13" y2="17"/></svg>
+    </button>
+    <a class="dock-icon" style="background: linear-gradient(155deg, #F5A623, #E4405F 55%, #7B4FE0);" href="#" target="_blank" rel="noopener" title="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="16.2" cy="7.8" r="0.9" fill="#fff" stroke="none"/></svg>
+    </a>
+    <a class="dock-icon" style="background: linear-gradient(155deg, #0B2E4F, #1E7FCB);" href="#" target="_blank" rel="noopener" title="Editor foto">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"><rect x="4" y="7" width="12" height="12" rx="1.5"/><rect x="8" y="4" width="12" height="12" rx="1.5" fill="none"/></svg>
+    </a>
+    <a class="dock-icon" style="background: linear-gradient(155deg, #B14C0A, #F08A2B);" href="#" target="_blank" rel="noopener" title="Vettoriale">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18l6-12 6 12"/><path d="M7.6 13h6.8"/><circle cx="11" cy="6" r="1.3" fill="#fff" stroke="none"/></svg>
+    </a>
+    <a class="dock-icon" style="background: linear-gradient(155deg, #241645, #5A2FBF);" href="#" target="_blank" rel="noopener" title="Video">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"><rect x="3.5" y="7.5" width="13" height="10" rx="1.5"/><path d="M16.5 10.5l4-2.3v9.6l-4-2.3z"/></svg>
+    </a>
+  </div>
 </div>
 
+<!-- ================= MOBILE (iOS) ================= -->
 
-<!-- VISUAL WINDOW -->
-
-<div class="window" id="visual">
-
-<div class="bar">
-Visual Archive
-<button onclick="closeWindow('visual')">×</button>
+<div class="ios-status mono">
+  <span id="clockMobile">9:41</span>
+  <span>●●● ⛁</span>
 </div>
 
-<div class="content">
+<div class="ios-home">
+  <div class="ios-greeting">
+    <h1>Dennie Delfin</h1>
+    <p>Street photography, design, musica e pittura astratta.</p>
+  </div>
 
-<h2>Photography & Design</h2>
-
-<div class="gallery">
-
-<img src="images/photo1.jpg">
-<img src="images/photo2.jpg">
-<img src="images/photo3.jpg">
-
+  <div class="app-grid">
+    <button class="app-icon" data-window="foto">
+      <span class="icon-glyph foto-grad">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7.5" width="18" height="12.5" rx="2"/><circle cx="12" cy="13.5" r="3.2"/><path d="M9 7.5l1.2-2h3.6l1.2 2"/></svg>
+      </span>
+      <span>Street Ph.</span>
+    </button>
+    <button class="app-icon" data-window="design">
+      <span class="icon-glyph design-grad">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1-4 10-10 3 3-10 10-4 1z"/><path d="M14 7l3 3"/></svg>
+      </span>
+      <span>Design</span>
+    </button>
+    <button class="app-icon" data-window="musica">
+      <span class="icon-glyph musica-grad">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2.6" y="13" width="4.2" height="6.5" rx="2"/><rect x="17.2" y="13" width="4.2" height="6.5" rx="2"/></svg>
+      </span>
+      <span>Musica</span>
+    </button>
+    <button class="app-icon" data-window="pittura">
+      <span class="icon-glyph pittura-grad">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c4.9 0 8.5 3.4 8.5 7.4 0 2.6-1.7 3.6-3.4 3.6h-1.8c-1 0-1.6.9-1.1 1.8.5 1 .1 2.2-1 2.7-.7.3-1.5.5-2.2.5-4.7 0-8.5-3.6-8.5-8s3.8-8 8.5-8z"/><circle cx="8.2" cy="10.5" r=".9" fill="currentColor" stroke="none"/><circle cx="12" cy="8" r=".9" fill="currentColor" stroke="none"/><circle cx="15.6" cy="10.2" r=".9" fill="currentColor" stroke="none"/></svg>
+      </span>
+      <span>Pittura</span>
+    </button>
+    <button class="app-icon" data-window="about">
+      <span class="icon-glyph about-grad">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20c0-4.2 3.4-6.4 7.5-6.4s7.5 2.2 7.5 6.4"/></svg>
+      </span>
+      <span>About</span>
+    </button>
+    <button class="app-icon" data-window="notes">
+      <span class="icon-glyph notes-grad">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="7" x2="19" y2="7"/><line x1="5" y1="12" x2="19" y2="12"/><line x1="5" y1="17" x2="13" y2="17"/></svg>
+      </span>
+      <span>Notes</span>
+    </button>
+    <button class="app-icon file-icon" data-qlook="photo">
+      <span class="icon-glyph"><span class="file-thumb-photo"></span></span>
+      <span>scatto-01</span>
+    </button>
+    <button class="app-icon file-icon" data-qlook="video">
+      <span class="icon-glyph">
+        <span class="file-thumb-video">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"><path d="M8 6l11 6-11 6V6z"/></svg>
+        </span>
+      </span>
+      <span>reel-01</span>
+    </button>
+    <button class="app-icon file-icon" data-qlook="audio">
+      <span class="icon-glyph">
+        <span class="file-thumb-audio">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M4 12v0M8 8v8M12 5v14M16 8v8M20 12v0"/></svg>
+        </span>
+      </span>
+      <span>beat-01</span>
+    </button>
+  </div>
 </div>
 
+<div class="ios-dock">
+  <a class="dock-icon" style="background: linear-gradient(155deg, #F5A623, #E4405F 55%, #7B4FE0);" href="#" target="_blank" rel="noopener" title="Instagram">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="16.2" cy="7.8" r="0.9" fill="#fff" stroke="none"/></svg>
+  </a>
+  <a class="dock-icon" style="background: linear-gradient(155deg, #0B2E4F, #1E7FCB);" href="#" target="_blank" rel="noopener" title="Editor foto">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"><rect x="4" y="7" width="12" height="12" rx="1.5"/><rect x="8" y="4" width="12" height="12" rx="1.5"/></svg>
+  </a>
+  <a class="dock-icon" style="background: linear-gradient(155deg, #B14C0A, #F08A2B);" href="#" target="_blank" rel="noopener" title="Vettoriale">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18l6-12 6 12"/><path d="M7.6 13h6.8"/><circle cx="11" cy="6" r="1.3" fill="#fff" stroke="none"/></svg>
+  </a>
+  <a class="dock-icon" style="background: linear-gradient(155deg, #241645, #5A2FBF);" href="#" target="_blank" rel="noopener" title="Video">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"><rect x="3.5" y="7.5" width="13" height="10" rx="1.5"/><path d="M16.5 10.5l4-2.3v9.6l-4-2.3z"/></svg>
+  </a>
 </div>
 
+<!-- ================= WINDOWS ================= -->
+
+<div class="backdrop" id="backdrop"></div>
+
+<!-- ================= QUICK LOOK ================= -->
+
+<div class="qlook" id="ql-photo">
+  <button class="qlook-close" data-qclose="1">✕</button>
+  <div class="qlook-media">
+    <img src="assets/images/scatto-01.jpg" alt="Anteprima fotografia" onerror="this.parentElement.innerHTML='<div style=&quot;color:#8a908d;font-size:13px&quot;>Sostituisci assets/images/scatto-01.jpg con la tua foto</div>'">
+  </div>
+  <div class="qlook-caption mono">scatto-01.jpg</div>
 </div>
 
-
-<!-- MUSIC WINDOW -->
-
-<div class="window" id="music">
-
-<div class="bar">
-Music Lab
-<button onclick="closeWindow('music')">×</button>
+<div class="qlook" id="ql-video">
+  <button class="qlook-close" data-qclose="1">✕</button>
+  <div class="qlook-media">
+    <video controls src="assets/video/reel-01.mp4"></video>
+  </div>
+  <div class="qlook-caption mono">reel-01.mp4</div>
 </div>
 
-<div class="content">
-
-<h2>DJ / Beatmaking</h2>
-
-<p>
-Electronic music, beats and sound experiments.
-</p>
-
-<br>
-
-<a href="#" class="link">
-Listen
-</a>
-
+<div class="qlook" id="ql-audio">
+  <button class="qlook-close" data-qclose="1">✕</button>
+  <div class="qlook-media audio-view">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"><path d="M4 12v0M8 8v8M12 5v14M16 8v8M20 12v0"/></svg>
+    <audio controls src="assets/audio/beat-01.mp3"></audio>
+  </div>
+  <div class="qlook-caption mono">beat-01.mp3</div>
 </div>
 
+<div class="window" id="win-about">
+  <div class="window-titlebar">
+    <button class="back-btn" data-close="1">‹ Home</button>
+    <div class="chrome">
+      <button class="dot-red" data-close="1"></button>
+      <button class="dot-amber"></button>
+      <button class="dot-green"></button>
+    </div>
+    <span class="window-title mono">About Me.txt</span>
+  </div>
+  <div class="window-body">
+    <p>Mi muovo tra street photography, design, dj set, beatmaking e pittura astratta ad acrilico.
+       Ogni disciplina è un modo diverso di guardare la stessa cosa. Questo testo è un segnaposto —
+       sostituiscilo con la tua bio vera.</p>
+  </div>
 </div>
 
-
-<!-- ABOUT WINDOW -->
-
-<div class="window" id="about">
-
-<div class="bar">
-About Me
-<button onclick="closeWindow('about')">×</button>
+<div class="window wide" id="win-notes">
+  <div class="window-titlebar">
+    <button class="back-btn" data-close="1">‹ Home</button>
+    <div class="chrome">
+      <button class="dot-red" data-close="1"></button>
+      <button class="dot-amber"></button>
+      <button class="dot-green"></button>
+    </div>
+    <span class="window-title mono">Notes</span>
+  </div>
+  <div class="window-body">
+    <div class="notes-app">
+      <div class="notes-list" id="notesList">
+        <button class="notes-list-item active" data-note="1">
+          <span class="n-title">Nuova serie</span>
+          <span class="n-preview">Nuova serie in lavorazione, presto online...</span>
+        </button>
+        <button class="notes-list-item" data-note="2">
+          <span class="n-title">Sito</span>
+          <span class="n-preview">Aggiornata la sezione progetti...</span>
+        </button>
+        <button class="notes-list-item" data-note="3">
+          <span class="n-title">Idee</span>
+          <span class="n-preview">Appunti sparsi da sviluppare...</span>
+        </button>
+      </div>
+      <div class="notes-detail">
+        <span class="n-date mono" id="noteDate">luglio 2026</span>
+        <p class="n-body" id="noteBody">Nuova serie in lavorazione, presto online. Questo testo è un segnaposto: sostituiscilo con i tuoi appunti veri.</p>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="content">
-
-<h2>Creative Artist</h2>
-
-<p>
-I explore the connection between images,
-design and sound.
-</p>
-
+<div class="window" id="win-foto">
+  <div class="window-titlebar">
+    <button class="back-btn" data-close="1">‹ Home</button>
+    <div class="chrome">
+      <button class="dot-red" data-close="1"></button>
+      <button class="dot-amber"></button>
+      <button class="dot-green"></button>
+    </div>
+    <span class="window-title mono">Street Photography</span>
+  </div>
+  <div class="window-body">
+    <div class="works-grid">
+      <div class="work-card"><div class="work-thumb foto-grad"></div><div class="work-meta"><span class="work-title">Titolo scatto</span><span class="work-tag mono">2026</span></div></div>
+      <div class="work-card"><div class="work-thumb foto-grad"></div><div class="work-meta"><span class="work-title">Titolo scatto</span><span class="work-tag mono">2025</span></div></div>
+      <div class="work-card"><div class="work-thumb foto-grad"></div><div class="work-meta"><span class="work-title">Titolo scatto</span><span class="work-tag mono">2025</span></div></div>
+      <div class="work-card"><div class="work-thumb foto-grad"></div><div class="work-meta"><span class="work-title">Titolo scatto</span><span class="work-tag mono">2024</span></div></div>
+    </div>
+  </div>
 </div>
 
+<div class="window" id="win-design">
+  <div class="window-titlebar">
+    <button class="back-btn" data-close="1">‹ Home</button>
+    <div class="chrome">
+      <button class="dot-red" data-close="1"></button>
+      <button class="dot-amber"></button>
+      <button class="dot-green"></button>
+    </div>
+    <span class="window-title mono">Design</span>
+  </div>
+  <div class="window-body">
+    <div class="works-grid">
+      <div class="work-card"><div class="work-thumb design-grad"></div><div class="work-meta"><span class="work-title">Nome progetto</span><span class="work-tag mono">2026</span></div></div>
+      <div class="work-card"><div class="work-thumb design-grad"></div><div class="work-meta"><span class="work-title">Nome progetto</span><span class="work-tag mono">2025</span></div></div>
+    </div>
+  </div>
 </div>
 
-
-<!-- CONTACT WINDOW -->
-
-<div class="window" id="contact">
-
-<div class="bar">
-Contact
-<button onclick="closeWindow('contact')">×</button>
+<div class="window wide" id="win-musica">
+  <div class="window-titlebar">
+    <button class="back-btn" data-close="1">‹ Home</button>
+    <div class="chrome">
+      <button class="dot-red" data-close="1"></button>
+      <button class="dot-amber"></button>
+      <button class="dot-green"></button>
+    </div>
+    <span class="window-title mono">Musica</span>
+  </div>
+  <div class="window-body">
+    <div class="music-note">Qui compariranno i set dj e i beat. Sostituisci gli <span class="mono">src</span> dei tag &lt;audio&gt; con i tuoi file mp3.</div>
+    <div class="track-list">
+      <div class="track-row">
+        <span class="track-num mono">01</span>
+        <span class="track-icon musica-grad">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2.6" y="13" width="4.2" height="6.5" rx="2"/><rect x="17.2" y="13" width="4.2" height="6.5" rx="2"/></svg>
+        </span>
+        <div class="track-info">
+          <span class="track-name">Nome set / beat</span>
+          <span class="track-sub mono">dj set — 2026</span>
+        </div>
+        <audio controls src="assets/audio/track-01.mp3"></audio>
+      </div>
+      <div class="track-row">
+        <span class="track-num mono">02</span>
+        <span class="track-icon musica-grad">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2.6" y="13" width="4.2" height="6.5" rx="2"/><rect x="17.2" y="13" width="4.2" height="6.5" rx="2"/></svg>
+        </span>
+        <div class="track-info">
+          <span class="track-name">Nome set / beat</span>
+          <span class="track-sub mono">beatmaking — 2026</span>
+        </div>
+        <audio controls src="assets/audio/track-02.mp3"></audio>
+      </div>
+      <div class="track-row">
+        <span class="track-num mono">03</span>
+        <span class="track-icon musica-grad">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2.6" y="13" width="4.2" height="6.5" rx="2"/><rect x="17.2" y="13" width="4.2" height="6.5" rx="2"/></svg>
+        </span>
+        <div class="track-info">
+          <span class="track-name">Nome set / beat</span>
+          <span class="track-sub mono">dj set — 2025</span>
+        </div>
+        <audio controls src="assets/audio/track-03.mp3"></audio>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="content">
-
-<h2>Let's collaborate</h2>
-
-<p>
-email@email.com
-</p>
-
+<div class="window" id="win-pittura">
+  <div class="window-titlebar">
+    <button class="back-btn" data-close="1">‹ Home</button>
+    <div class="chrome">
+      <button class="dot-red" data-close="1"></button>
+      <button class="dot-amber"></button>
+      <button class="dot-green"></button>
+    </div>
+    <span class="window-title mono">Pittura</span>
+  </div>
+  <div class="window-body">
+    <div class="works-grid">
+      <div class="work-card"><div class="work-thumb pittura-grad"></div><div class="work-meta"><span class="work-title">Titolo opera</span><span class="work-tag mono">2026</span></div></div>
+      <div class="work-card"><div class="work-thumb pittura-grad"></div><div class="work-meta"><span class="work-title">Titolo opera</span><span class="work-tag mono">2025</span></div></div>
+    </div>
+  </div>
 </div>
 
-</div>
-
-
-</div>
-
-
-<script src="script.js"></script>
+<script src="js/main.js" defer></script>
 
 </body>
 </html>
