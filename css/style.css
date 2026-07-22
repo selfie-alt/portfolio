@@ -70,13 +70,18 @@ svg{ display:block; }
   background:none; border:none; cursor:pointer;
   display:flex; flex-direction:column; align-items:center; gap:7px; width:88px;
 }
-/* squircle Big Sur */
+/* squircle Big Sur (per le anteprime file) */
 .d-icon .icon-glyph, .app-icon .icon-glyph{
   width:58px; height:58px; border-radius:24%;
   display:flex; align-items:center; justify-content:center;
   color:#fff; padding:6px; overflow:hidden;
   box-shadow:0 8px 18px rgba(20,24,40,.28), inset 0 1px 0 rgba(255,255,255,.4), inset 0 0 0 .5px rgba(0,0,0,.06);
   transition:transform .18s cubic-bezier(.2,.8,.2,1);
+}
+/* icone-app: mostrano l'artwork PNG per intero (folder, notes, music, ai, ps) */
+.d-icon .app-glyph, .app-icon .app-glyph{
+  background:transparent; border-radius:0; overflow:visible; padding:0; box-shadow:none;
+  filter:drop-shadow(0 6px 10px rgba(20,24,40,.34));
 }
 .d-icon:hover .icon-glyph{ transform:translateY(-3px) scale(1.05); }
 .d-icon:active .icon-glyph{ transform:scale(.94); }
@@ -96,10 +101,10 @@ svg{ display:block; }
   box-shadow:0 18px 40px rgba(20,24,40,.32), inset 0 1px 0 var(--hairline);
 }
 .dock-icon{
-  width:46px; height:46px; border-radius:24%;
+  width:48px; height:48px;
   display:flex; align-items:center; justify-content:center; color:#fff;
-  border:none; cursor:pointer; overflow:hidden;
-  box-shadow:0 6px 14px rgba(20,24,40,.28), inset 0 1px 0 rgba(255,255,255,.4);
+  border:none; cursor:pointer; background:transparent;
+  filter:drop-shadow(0 5px 10px rgba(20,24,40,.32));
   transition:transform .18s cubic-bezier(.2,.8,.2,1);
 }
 .dock-icon:hover{ transform:translateY(-10px) scale(1.12); }
@@ -210,7 +215,7 @@ svg{ display:block; }
 .track-row{ display:flex; align-items:center; gap:14px; padding:11px 8px; border-bottom:1px solid var(--line); }
 .track-row:last-child{ border-bottom:none; }
 .track-num{ width:18px; font-size:12px; color:var(--ink-soft); flex-shrink:0; font-variant-numeric:tabular-nums; }
-.track-icon{ width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#fff; flex-shrink:0; overflow:hidden; box-shadow:0 4px 10px rgba(20,24,40,.2); }
+.track-icon{ width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#fff; flex-shrink:0; overflow:hidden; background:transparent!important; box-shadow:none; }
 .track-icon svg{ width:16px; height:16px; }
 .track-icon .icon-img{ width:100%; height:100%; object-fit:contain; }
 .track-info{ flex:1; min-width:0; }
@@ -220,7 +225,7 @@ svg{ display:block; }
 .music-note{ font-size:13px; color:var(--ink-soft); margin-bottom:16px; padding:12px 14px; background:#f5f5f7; border-radius:10px; }
 
 /* ================= MOBILE (iOS) ================= */
-.ios-status, .ios-home{ display:none; }
+.ios-status, .ios-home, .ios-dock{ display:none; }
 
 @media (max-width:860px){
   .menubar, .desktop, .dock{ display:none; }
@@ -239,8 +244,8 @@ svg{ display:block; }
 
   /* --- icone: SPARSE, NON RUOTATE, LEGGERMENTE SOVRAPPOSTE --- */
   .app-grid{ display:block; position:relative; height:62vh; min-height:460px; margin-top:6px; }
-  .app-icon{ position:absolute; width:80px; gap:7px; transition:transform .18s cubic-bezier(.2,.8,.2,1); }
-  .app-icon:active{ transform:scale(.92); z-index:99; }
+  .app-icon{ position:absolute; width:80px; gap:7px; transform:translateX(-50%); transition:transform .18s cubic-bezier(.2,.8,.2,1); }
+  .app-icon:active{ transform:translateX(-50%) scale(.92); z-index:99; }
   .app-icon .icon-glyph{ width:62px; height:62px; margin:0 auto; }
   .app-icon span{ font-size:11.5px; }
 

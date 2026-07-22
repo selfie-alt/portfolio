@@ -2,19 +2,21 @@
    CONFIGURAZIONE ICONE
    Aggiungi, rimuovi o riordina le voci qui sotto per cambiare quali
    icone compaiono e quante. Le posizioni (desktop e mobile) vengono
-   ricalcolate automaticamente in modo sparso per qualunque quantità.
+   ricalcolate automaticamente per qualunque quantità e ad ogni resize.
    ===================================================================== */
 
+// Icone "app" del desktop / home iOS
 const DESKTOP_APPS = [
-  { id:'about',   label:'About Me',  icon:'assets/icons/about.png',   grad:'about-grad',   window:'about'  },
-  { id:'notes',   label:'Notes',     icon:'assets/icons/notes.png',   grad:'notes-grad',   window:'notes'  },
-  { id:'foto',    label:'Street Ph.',icon:'assets/icons/foto.png',    grad:'foto-grad',    window:'foto'   },
-  { id:'design',  label:'Design',    icon:'assets/icons/design.png',  grad:'design-grad',  window:'design' },
-  { id:'musica',  label:'Musica',    icon:'assets/icons/musica.png',  grad:'musica-grad',  window:'musica' },
-  { id:'pittura', label:'Pittura',   icon:'assets/icons/pittura.png', grad:'pittura-grad', window:'pittura'},
+  { id:'about',   label:'About Me',  icon:'assets/icons/folder.png', window:'about'  },
+  { id:'notes',   label:'Notes',     icon:'assets/icons/notes.png',  window:'notes'  },
+  { id:'foto',    label:'Street Ph.',icon:'assets/icons/folder.png', window:'foto'   },
+  { id:'design',  label:'Design',    icon:'assets/icons/folder.png', window:'design' },
+  { id:'musica',  label:'Musica',    icon:'assets/icons/musica.png', window:'musica' },
+  { id:'pittura', label:'Pittura',   icon:'assets/icons/folder.png', window:'pittura'},
 ];
 const DESKTOP_ICON_COUNT = 6;
 
+// Icone "file" (anteprime multimediali stile Quick Look)
 const FILE_ICONS = [
   { id:'photo-file', label:'scatto-01.jpg', kind:'photo', qlook:'photo' },
   { id:'video-file', label:'reel-01.mp4',   kind:'video', qlook:'video' },
@@ -22,18 +24,15 @@ const FILE_ICONS = [
 ];
 const SHOW_FILE_ICONS = true;
 
+// Dock: SOLO Instagram, Illustrator, Photoshop
 const DOCK_APPS = [
-  { id:'about',       label:'About Me',   grad:'about-grad', icon:'assets/icons/about.png',       window:'about' },
-  { id:'notes',       label:'Notes',      grad:'notes-grad', icon:'assets/icons/notes.png',       window:'notes' },
-  { id:'instagram',   label:'Instagram',  bg:'linear-gradient(155deg, #F5A623, #E4405F 55%, #7B4FE0)', icon:'assets/icons/instagram.png',   href:'#' },
-  { id:'photoshop',   label:'Editor foto',bg:'linear-gradient(155deg, #0B2E4F, #1E7FCB)',              icon:'assets/icons/photoshop.png',   href:'#' },
-  { id:'illustrator', label:'Vettoriale', bg:'linear-gradient(155deg, #B14C0A, #F08A2B)',              icon:'assets/icons/illustrator.png', href:'#' },
-  { id:'premiere',    label:'Video',      bg:'linear-gradient(155deg, #241645, #5A2FBF)',              icon:'assets/icons/premiere.png',    href:'#' },
+  { id:'instagram',   label:'Instagram',   icon:'assets/icons/instagram.png',   href:'#' },
+  { id:'illustrator', label:'Illustrator', icon:'assets/icons/illustrator.png', href:'#' },
+  { id:'photoshop',   label:'Photoshop',   icon:'assets/icons/photoshop.png',   href:'#' },
 ];
-const DOCK_ICON_COUNT = 6;
+const DOCK_ICON_COUNT = 3;
 
-/* Quanto si sovrappongono le icone sul mobile (0 = griglia pulita,
-   1 = molto accavallate). Il "disordine" richiesto sta qui. */
+// Quanto si sovrappongono le icone sul mobile (0 = griglia pulita, 1 = molto accavallate)
 const MOBILE_OVERLAP = 0.6;
 
 
@@ -51,7 +50,7 @@ function seededRandom(seed){
   };
 }
 
-/* Desktop: sparso ma centrato, SENZA sovrapposizioni. */
+/* Desktop: sparso ma centrato, SENZA sovrapposizioni. Coord. top-left in %. */
 function scatterPositions(n, seed){
   if(n <= 0) return [];
   const cols = Math.max(1, Math.ceil(Math.sqrt(n * 1.4)));
@@ -64,7 +63,7 @@ function scatterPositions(n, seed){
     const j = Math.floor(rnd()*(i+1));
     [cells[i],cells[j]] = [cells[j],cells[i]];
   }
-  const zone = { left:20, top:14, width:60, height:60 };
+  const zone = { left:20, top:16, width:60, height:58 };
   const cellW = zone.width/cols, cellH = zone.height/rows;
 
   return cells.slice(0,n).map(([r,c]) => ({
@@ -75,9 +74,9 @@ function scatterPositions(n, seed){
 }
 
 /* Mobile: sparso, NON ruotato, con LEGGERA SOVRAPPOSIZIONE.
-   Il jitter ampio fa accavallare le icone vicine come stampe
-   accatastate sul tavolo; ognuna riceve uno z-index crescente
-   così le sovrapposizioni si stratificano in modo pulito. */
+   Restituisce il CENTRO di ogni icona in % (poi CSS usa translateX(-50%)),
+   con clamp ai bordi così le icone stanno sempre dentro lo schermo a
+   qualunque larghezza -> il layout si adatta in modo fluido. */
 function scatterOverlap(n, seed, overlap){
   if(n <= 0) return [];
   const cols = Math.max(2, Math.round(Math.sqrt(n * 0.9)));
@@ -90,16 +89,17 @@ function scatterOverlap(n, seed, overlap){
     const j = Math.floor(rnd()*(i+1));
     [cells[i],cells[j]] = [cells[j],cells[i]];
   }
-  const zone = { left:3, top:2, width:78, height:92 };   // % del contenitore
-  const cellW = zone.width/cols, cellH = zone.height/rows;
-  const j = 0.55 + overlap * 0.6;   // ampiezza del disturbo → overlap
+  const zone = { left:16, top:8, right:84, bottom:82 };
+  const cw = (zone.right-zone.left)/cols, ch = (zone.bottom-zone.top)/rows;
+  const j = 0.6 + overlap*0.7;
 
-  return cells.slice(0,n).map(([r,c], i) => ({
-    left: Math.max(0, Math.min(zone.left + zone.width - 2,
-          zone.left + c*cellW + (rnd()-0.5)*cellW*j)),
-    top:  Math.max(0, zone.top + r*cellH + (rnd()-0.5)*cellH*j),
-    z: i + 1,
-  }));
+  return cells.slice(0,n).map(([r,c], i) => {
+    let cx = zone.left + cw*(c+0.5) + (rnd()-0.5)*cw*j;
+    let cy = zone.top  + ch*(r+0.5) + (rnd()-0.5)*ch*j;
+    cx = Math.max(15, Math.min(85, cx));   // resta dentro sui piccoli schermi
+    cy = Math.max(6,  Math.min(84, cy));
+    return { cx, cy, z:i+1 };
+  });
 }
 
 
@@ -130,7 +130,7 @@ function renderDesktopIcons(){
   apps.forEach(app => {
     const pos = positions[i++];
     html += `<button class="d-icon" data-window="${app.window}" style="left:${pos.left.toFixed(2)}%; top:${pos.top.toFixed(2)}%;">
-      <span class="icon-glyph ${app.grad}"><img class="icon-img" src="${app.icon}" alt="${app.label}"></span>
+      <span class="icon-glyph app-glyph"><img class="icon-img" src="${app.icon}" alt="${app.label}"></span>
       <span>${app.label}</span>
     </button>`;
   });
@@ -144,24 +144,17 @@ function renderDesktopIcons(){
   container.innerHTML = html;
 }
 
-function dockIconMarkup(app, tag){
-  const bgStyle = app.bg ? `style="background: ${app.bg};"` : '';
-  const gradClass = app.grad ? app.grad : '';
-  if(tag === 'a'){
-    return `<a class="dock-icon ${gradClass}" ${bgStyle} href="${app.href||'#'}" target="_blank" rel="noopener" title="${app.label}">
-      <img class="icon-img" src="${app.icon}" alt="${app.label}">
-    </a>`;
-  }
-  return `<button class="dock-icon ${gradClass}" ${bgStyle} data-window="${app.window}" title="${app.label}">
+function dockIconMarkup(app){
+  return `<a class="dock-icon" href="${app.href||'#'}" target="_blank" rel="noopener" title="${app.label}">
     <img class="icon-img" src="${app.icon}" alt="${app.label}">
-  </button>`;
+  </a>`;
 }
 
 function renderDock(containerId){
   const container = document.getElementById(containerId);
   if(!container) return;
   const apps = DOCK_APPS.slice(0, Math.min(DOCK_ICON_COUNT, DOCK_APPS.length));
-  container.innerHTML = apps.map(app => dockIconMarkup(app, app.window ? 'button' : 'a')).join('');
+  container.innerHTML = apps.map(dockIconMarkup).join('');
 }
 
 function renderMobileGrid(){
@@ -175,14 +168,14 @@ function renderMobileGrid(){
   let html = '', i = 0;
   apps.forEach(app => {
     const p = positions[i++];
-    html += `<button class="app-icon" data-window="${app.window}" style="left:${p.left.toFixed(2)}%; top:${p.top.toFixed(2)}%; z-index:${p.z};">
-      <span class="icon-glyph ${app.grad}"><img class="icon-img" src="${app.icon}" alt="${app.label}"></span>
+    html += `<button class="app-icon" data-window="${app.window}" style="left:${p.cx.toFixed(2)}%; top:${p.cy.toFixed(2)}%; z-index:${p.z};">
+      <span class="icon-glyph app-glyph"><img class="icon-img" src="${app.icon}" alt="${app.label}"></span>
       <span>${app.label}</span>
     </button>`;
   });
   files.forEach(file => {
     const p = positions[i++];
-    html += `<button class="app-icon file-icon" data-qlook="${file.qlook}" style="left:${p.left.toFixed(2)}%; top:${p.top.toFixed(2)}%; z-index:${p.z};">
+    html += `<button class="app-icon file-icon" data-qlook="${file.qlook}" style="left:${p.cx.toFixed(2)}%; top:${p.cy.toFixed(2)}%; z-index:${p.z};">
       <span class="icon-glyph">${fileIconInnerHTML(file.kind)}</span>
       <span>${file.label.replace(/\.(jpg|mp4|mp3)$/,'')}</span>
     </button>`;
@@ -190,14 +183,24 @@ function renderMobileGrid(){
   container.innerHTML = html;
 }
 
-renderDesktopIcons();
-renderDock('dockDesktop');
-renderMobileGrid();
-renderDock('dockMobile');
+function layoutAll(){
+  renderDesktopIcons();
+  renderDock('dockDesktop');
+  renderMobileGrid();
+  renderDock('dockMobile');
+}
+layoutAll();
+
+// Ricalcolo fluido quando la finestra cambia dimensione / orientamento
+let _rz;
+window.addEventListener('resize', () => {
+  clearTimeout(_rz);
+  _rz = setTimeout(layoutAll, 120);
+});
 
 
 /* =====================================================================
-   FINESTRE, QUICK LOOK, NOTE, OROLOGIO  (invariato)
+   FINESTRE, QUICK LOOK, NOTE, OROLOGIO  (event delegation)
    ===================================================================== */
 
 const backdrop = document.getElementById('backdrop');
