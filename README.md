@@ -1,4 +1,4 @@
-# Dennie Delfin — Portfolio (skin "Skate / Surf Shop")
+# Dennie Delfin — Portfolio (skin "macOS clean")
 
 Sito statico, codice puro HTML/CSS/JS (nessun framework).
 
