@@ -1,464 +1,321 @@
+/* =====================================================================
+   DENNIE DELFIN — skin "Skate / Surf Shop"
+   Ispirato al 2026 Design Trend Report (Stills): screenprint, adesivi
+   die-cut, mezzatinta, blocchi di colore pieni, scarabocchi da marker.
+   Struttura invariata rispetto alla versione precedente.
+   ===================================================================== */
+
 :root{
-    --bg: #EEF0EE;
-    --panel: #FFFFFF;
-    --ink: #14181A;
-    --ink-soft: #5B6461;
-    --line: #D8DEDA;
-    --deep: #1C4B4A;
-    --pop: #D6572E;
-    --radius: 16px;
+  --paper:  #E7E1D2;   /* carta da giornale */
+  --paper-2:#DCD4BE;
+  --sheet:  #F4EFE0;   /* foglio/poster finestre */
+  --ink:    #121212;   /* nero serigrafia */
+  --ink-soft:#57524A;
+  --line:   #C6BBA0;
+  --pink:   #FF3E8A;
+  --blue:   #1F52D6;
+  --mustard:#E0A500;
+  --orange: #F0531F;
+  --acid:   #A9D400;
+  --white:  #FBF7EC;   /* bianco adesivo die-cut */
+  --radius: 3px;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Work Sans', sans-serif;
+  -webkit-font-smoothing:antialiased;
+  height:100vh; overflow:hidden;
+}
+/* mezzatinta + grana globali */
+body::after{
+  content:""; position:fixed; inset:0; z-index:100; pointer-events:none;
+  background:
+    radial-gradient(circle, rgba(18,18,18,.10) 0.6px, transparent 1.1px) 0 0/6px 6px,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;
+}
+a{ color:inherit; text-decoration:none; }
+button{ font-family:inherit; }
+
+.mono{ font-family:'IBM Plex Mono', monospace; letter-spacing:.02em; }
+.disp{ font-family:'Anton', sans-serif; text-transform:uppercase; letter-spacing:.01em; }
+.hand{ font-family:'Permanent Marker', cursive; }
+svg{ display:block; }
+
+/* ---------------- COLORI DISCIPLINA (screenprint pieno) ---------------- */
+.foto-grad{    background:linear-gradient(150deg,#1F52D6,#4f86ff); }
+.design-grad{  background:linear-gradient(150deg,#B67F00,#E0A500); }
+.musica-grad{  background:linear-gradient(150deg,#D01f6a,#FF3E8A); }
+.pittura-grad{ background:linear-gradient(150deg,#C33d12,#F0531F); }
+.about-grad{   background:linear-gradient(150deg,#111,#3a3a3a); }
+.notes-grad{   background:linear-gradient(150deg,#7fa400,#A9D400); }
+
+/* ================= DESKTOP (macOS) ================= */
+
+.menubar{
+  position:fixed; top:0; left:0; right:0; height:32px;
+  display:flex; align-items:center; justify-content:space-between; padding:0 16px;
+  background:var(--ink); color:var(--white);
+  z-index:30;
+  box-shadow:0 2px 0 var(--pink);
+}
+.mb-left{ display:flex; align-items:center; gap:9px; }
+.mb-left span:last-child{
+  font-family:'Anton',sans-serif; text-transform:uppercase; letter-spacing:.06em;
+  font-size:14px; color:var(--white);
+}
+.mb-left .dot{ width:9px; height:9px; border-radius:50%; background:var(--acid); box-shadow:0 0 0 2px rgba(169,212,0,.35); }
+.mb-right{ font-family:'IBM Plex Mono',monospace; color:var(--white); font-size:12px; }
+
+.desktop{
+  position:fixed; inset:32px 0 0 0; overflow:hidden;
+  background:
+    radial-gradient(circle, rgba(18,18,18,.06) 1px, transparent 1.4px) 0 0/9px 9px,
+    linear-gradient(150deg,var(--paper),var(--paper-2));
+}
+/* blocchi di colore da poster + squiggle da marker */
+.desktop::before{
+  content:""; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:
+    linear-gradient(120deg, rgba(31,82,214,.10) 0 32%, transparent 32%),
+    linear-gradient(300deg, rgba(255,62,138,.10) 0 26%, transparent 26%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='240'%3E%3Cpath d='M10 120 C 60 60, 110 180, 160 120 S 260 60, 310 120 S 400 180, 410 120' fill='none' stroke='%23121212' stroke-width='3' stroke-linecap='round' opacity='.12'/%3E%3C/svg%3E") -30px 60% no-repeat;
+}
+/* timbro / wordmark */
+.desktop::after{
+  content:"EST. MILANO — 2026"; position:absolute; top:18px; right:22px;
+  font-family:'Anton',sans-serif; text-transform:uppercase; letter-spacing:.05em;
+  font-size:14px; color:var(--white); background:var(--pink);
+  padding:4px 10px; transform:rotate(-4deg); pointer-events:none;
+  box-shadow:3px 3px 0 var(--ink);
+}
+
+.desktop-icons{ position:absolute; inset:0; z-index:1; }
+
+.d-icon{ position:absolute; }
+.d-icon, .app-icon{
+  background:none; border:none; cursor:pointer;
+  display:flex; flex-direction:column; align-items:center; gap:7px; width:84px;
+}
+/* icone-app come ADESIVI die-cut (bordo bianco spesso + ombra dura) */
+.d-icon .icon-glyph, .app-icon .icon-glyph{
+  width:56px; height:56px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; padding:5px; position:relative;
+  border:4px solid var(--white); background-clip:padding-box;
+  box-shadow:3px 3px 0 var(--ink);
+  transition:transform .12s ease;
+}
+.d-icon .icon-glyph::after, .app-icon .icon-glyph::after{ /* angolo scollato */
+  content:""; position:absolute; right:-4px; bottom:-4px; width:14px; height:14px;
+  background:linear-gradient(135deg, transparent 46%, var(--white) 47%);
+  filter:drop-shadow(1px 1px 0 rgba(0,0,0,.2));
+}
+.d-icon:hover .icon-glyph{ transform:translate(-1px,-1px); box-shadow:5px 5px 0 var(--ink); }
+.d-icon:active .icon-glyph{ transform:translate(2px,2px); box-shadow:1px 1px 0 var(--ink); }
+.d-icon span, .app-icon span{
+  font-family:'Anton',sans-serif; text-transform:uppercase; letter-spacing:.03em;
+  font-size:12px; color:var(--ink); text-align:center; line-height:1.1;
+  background:var(--white); padding:1px 6px; box-shadow:2px 2px 0 rgba(18,18,18,.25);
+}
+.d-icon .icon-glyph svg, .app-icon .icon-glyph svg{ width:24px; height:24px; }
+.icon-glyph .icon-img{ width:100%; height:100%; object-fit:contain; -webkit-user-drag:none; pointer-events:none; }
+
+.dock{
+  position:absolute; bottom:18px; left:50%; transform:translateX(-50%);
+  display:flex; align-items:flex-end; gap:14px; padding:11px 16px;
+  background:var(--ink); border-radius:10px;
+  box-shadow:5px 5px 0 rgba(18,18,18,.25), inset 0 0 0 2px var(--acid);
+}
+.dock-icon{
+  width:46px; height:46px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center; color:#fff;
+  border:3px solid var(--white); cursor:pointer;
+  box-shadow:2px 2px 0 rgba(0,0,0,.4);
+  transition:transform .12s ease;
+}
+.dock-icon:hover{ transform:translateY(-6px); }
+.dock-icon svg{ width:20px; height:20px; flex-shrink:0; }
+.dock-icon .icon-img{ width:100%; height:100%; object-fit:contain; -webkit-user-drag:none; pointer-events:none; }
+
+/* ---------------- FILE ICONS (foto/video/audio) — adesivi print --------- */
+.file-icon .icon-glyph{
+  width:56px; height:56px; border-radius:6px;
+  background:var(--white); border:4px solid var(--white);
+  box-shadow:3px 3px 0 var(--ink);
+  position:relative; overflow:hidden; padding:0;
+  display:flex; align-items:center; justify-content:center;
+}
+.file-thumb-photo{ width:100%; height:100%; position:relative;
+  background:linear-gradient(180deg,#8ec9f0 0%,#8ec9f0 58%,#6FAE6B 58%,#6FAE6B 100%); }
+.file-thumb-photo::after{ content:""; position:absolute; right:7px; top:7px; width:11px; height:11px; border-radius:50%; background:var(--mustard); }
+.file-thumb-video{ width:100%; height:100%; background:var(--ink); display:flex; align-items:center; justify-content:center; }
+.file-thumb-video svg{ width:20px; height:20px; }
+.file-thumb-audio{ width:100%; height:100%; background:linear-gradient(150deg,#D01f6a,#FF3E8A); display:flex; align-items:center; justify-content:center; }
+.file-thumb-audio svg{ width:22px; height:22px; }
+
+/* ---------------- QUICK LOOK ---------------- */
+.qlook{
+  position:fixed; top:50%; left:50%;
+  width:min(560px,88vw); max-height:80vh;
+  background:#151515; border:5px solid var(--white); border-radius:6px;
+  box-shadow:8px 8px 0 var(--ink), 0 30px 70px rgba(0,0,0,.5);
+  z-index:55; display:none; flex-direction:column; overflow:hidden;
+  transform:translate(-50%,-50%) scale(.82); opacity:0;
+  transition:transform .3s cubic-bezier(.2,.9,.25,1.25), opacity .22s ease;
+}
+.qlook.open{ display:flex; }
+.qlook.show{ transform:translate(-50%,-50%) scale(1); opacity:1; }
+.qlook-close{
+  position:absolute; top:10px; right:10px; width:26px; height:26px; border-radius:50%;
+  background:var(--pink); border:none; color:#fff; cursor:pointer; font-size:14px; line-height:1; z-index:2;
+}
+.qlook-media{ flex:1; display:flex; align-items:center; justify-content:center; background:#000; min-height:260px; }
+.qlook-media img{ width:100%; height:100%; object-fit:contain; display:block; }
+.qlook-media video{ width:100%; max-height:60vh; display:block; }
+.qlook-media.audio-view{ background:linear-gradient(150deg,#D01f6a,#FF3E8A); flex-direction:column; gap:18px; padding:30px; }
+.qlook-media.audio-view svg{ width:56px; height:56px; }
+.qlook-media.audio-view audio{ width:100%; max-width:340px; }
+.qlook-caption{ padding:9px 14px; font-family:'IBM Plex Mono',monospace; font-size:12px; color:#151515; background:var(--white); }
+.dock-icon.text{ font-size:12px; font-weight:600; }
+
+/* ---------------- WINDOWS (poster / zine) ---------------- */
+.backdrop{ position:fixed; inset:0; background:rgba(18,18,18,.45); z-index:40; opacity:0; pointer-events:none; transition:opacity .2s ease; }
+.backdrop.show{ opacity:1; pointer-events:auto; }
+
+.window{
+  position:fixed; top:50%; left:50%;
+  transform:translate(-50%,-50%) scale(.9); opacity:0;
+  width:min(640px,88vw); max-height:74vh;
+  background:var(--sheet); border-radius:var(--radius); border:3px solid var(--ink);
+  box-shadow:8px 8px 0 var(--ink);
+  z-index:50; display:none; flex-direction:column; overflow:hidden;
+  transition:transform .3s cubic-bezier(.2,.9,.25,1.2), opacity .2s ease;
+}
+.window.open{ display:flex; }
+.window.show{ transform:translate(-50%,-50%) scale(1); opacity:1; }
+.window.wide{ width:min(760px,90vw); }
+
+.window-titlebar{
+  display:flex; align-items:center; gap:12px; padding:12px 16px;
+  background:var(--ink); flex-shrink:0;
+}
+.chrome{ display:flex; gap:8px; }
+.chrome button{ width:12px; height:12px; border-radius:50%; border:none; cursor:pointer; padding:0; }
+.dot-red{ background:#FF3E8A; } .dot-amber{ background:var(--mustard); } .dot-green{ background:var(--acid); }
+.window-title{ font-family:'Anton',sans-serif; text-transform:uppercase; letter-spacing:.05em; font-size:14px; color:var(--white); }
+.back-btn{
+  display:none; background:none; border:none; cursor:pointer;
+  font-family:'Anton',sans-serif; text-transform:uppercase; font-size:14px; color:var(--acid);
+  align-items:center; gap:4px;
+}
+.window-body{ padding:20px 22px 24px; overflow-y:auto; }
+.window-body p{ color:var(--ink-soft); font-size:14px; line-height:1.7; max-width:58ch; }
+
+.note-item{ padding:10px 0; border-bottom:1px dashed var(--line); font-size:13px; }
+.note-item:last-child{ border-bottom:none; }
+.note-date{ display:block; font-size:11px; color:var(--ink-soft); margin-bottom:2px; }
+
+.works-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:4px; }
+.work-card{ border-radius:2px; overflow:hidden; background:var(--white); border:2px solid var(--ink); box-shadow:4px 4px 0 rgba(18,18,18,.85); }
+.work-thumb{ aspect-ratio:4/5; opacity:.96; }
+.work-meta{ padding:9px 11px; display:flex; align-items:baseline; justify-content:space-between; gap:8px; }
+.work-title{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:14px; }
+.work-tag{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft); }
+
+/* ---------------- NOTES APP (block / flyer) ---------------- */
+#win-notes .window-body{ padding:0; }
+.notes-app{ display:flex; height:46vh; min-height:320px; }
+.notes-list{ width:190px; flex-shrink:0; background:#efe8d6; border-right:2px solid var(--ink); overflow-y:auto; }
+.notes-list-item{ display:block; width:100%; text-align:left; background:none; border:none; border-bottom:1px solid var(--line); padding:12px 14px; cursor:pointer; }
+.notes-list-item .n-title{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:13px; display:block; margin-bottom:3px; }
+.notes-list-item .n-preview{ font-size:11.5px; color:var(--ink-soft); display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.notes-list-item.active{ background:var(--acid); box-shadow:inset 4px 0 0 var(--pink); }
+.notes-detail{ flex:1; padding:20px 22px; overflow-y:auto; }
+.notes-detail .n-date{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft); margin-bottom:12px; display:block; }
+.notes-detail .n-body{ font-family:'Permanent Marker',cursive; font-size:18px; line-height:1.55; color:var(--ink); }
+
+/* ---------------- MUSICA APP (setlist) ---------------- */
+.track-list{ display:flex; flex-direction:column; gap:2px; }
+.track-row{ display:flex; align-items:center; gap:12px; padding:10px 8px; border-bottom:1px solid var(--line); }
+.track-row:last-child{ border-bottom:none; }
+.track-num{ width:20px; font-family:'Anton',sans-serif; font-size:15px; color:var(--pink); flex-shrink:0; }
+.track-icon{ width:34px; height:34px; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff; flex-shrink:0; border:3px solid var(--white); box-shadow:2px 2px 0 var(--ink); }
+.track-icon svg{ width:16px; height:16px; }
+.track-icon .icon-img{ width:100%; height:100%; object-fit:contain; }
+.track-info{ flex:1; min-width:0; }
+.track-name{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:14px; display:block; }
+.track-sub{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft); }
+.track-row audio{ height:30px; max-width:150px; }
+.music-note{ font-size:12.5px; color:var(--ink-soft); margin-bottom:14px; padding:10px 12px; background:#efe8d6; border:2px solid var(--ink); border-left:6px solid var(--pink); }
+
+/* ================= MOBILE (iOS) ================= */
+.ios-status, .ios-home{ display:none; }
+
+@media (max-width:860px){
+  .menubar, .desktop, .dock{ display:none; }
+  body{ overflow-y:auto; height:auto; min-height:100vh; }
+
+  .ios-status{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 22px 4px; font-family:'IBM Plex Mono',monospace; font-size:13px;
+    color:var(--ink); background:linear-gradient(180deg,rgba(231,225,210,.9),transparent);
   }
 
-  *{ box-sizing: border-box; margin:0; padding:0; }
-  html{ scroll-behavior: smooth; }
-  body{
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'Work Sans', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    height: 100vh;
-    overflow: hidden;
-  }
-  a{ color: inherit; text-decoration: none; }
-  button{ font-family: inherit; }
-  .mono{ font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.02em; }
-  svg{ display:block; }
-
-  /* ---------------- GRADIENTS PER DISCIPLINA ---------------- */
-  .foto-grad{ background: linear-gradient(155deg, #1C4B4A, #3a8f80); }
-  .design-grad{ background: linear-gradient(155deg, #2B3A67, #5C7AEA); }
-  .musica-grad{ background: linear-gradient(155deg, #4A1E4D, #A24BA2); }
-  .pittura-grad{ background: linear-gradient(155deg, #7A2E1E, #D6572E); }
-  .about-grad{ background: linear-gradient(155deg, #3A3F42, #6B7478); }
-  .notes-grad{ background: linear-gradient(155deg, #6B5B1E, #C9A227); }
-
-  /* ================= DESKTOP (macOS) ================= */
-
-  .menubar{
-    position: fixed;
-    top:0; left:0; right:0;
-    height: 32px;
-    display:flex;
-    align-items:center;
-    justify-content: space-between;
-    padding: 0 16px;
-    background: rgba(255,255,255,0.55);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-    font-size: 12px;
-    z-index: 30;
-  }
-  .mb-left{ display:flex; align-items:center; gap:8px; color: var(--ink); }
-  .mb-left .dot{ width:8px; height:8px; border-radius:50%; background: var(--pop); }
-  .mb-right{ color: var(--ink-soft); }
-
-  .desktop{
-    position: fixed;
-    inset: 32px 0 0 0;
+  .ios-home{
+    display:block; min-height:100vh; position:relative;
     background:
-      linear-gradient(155deg, rgba(10,12,11,0.42), rgba(10,12,11,0.52)),
-      url('../assets/images/sfondo-desktop.jpg');
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
+      radial-gradient(circle, rgba(18,18,18,.06) 1px, transparent 1.4px) 0 0/9px 9px,
+      linear-gradient(120deg, rgba(31,82,214,.10) 0 30%, transparent 30%),
+      linear-gradient(300deg, rgba(255,62,138,.10) 0 24%, transparent 24%),
+      linear-gradient(150deg,var(--paper),var(--paper-2));
+    padding:10px 18px 120px;
+  }
+  .ios-home::after{
+    content:"EST. MILANO — 2026"; position:absolute; top:14px; right:16px;
+    font-family:'Anton',sans-serif; text-transform:uppercase; letter-spacing:.04em;
+    font-size:11px; color:var(--white); background:var(--pink);
+    padding:3px 7px; transform:rotate(-4deg); pointer-events:none;
+    box-shadow:2px 2px 0 var(--ink);
   }
 
-  .desktop-icons{
-    position:absolute;
-    inset: 0;
-  }
+  .ios-greeting{ padding:14px 4px 16px; color:var(--ink); position:relative; z-index:1; }
+  .ios-greeting h1{ font-family:'Anton',sans-serif; text-transform:uppercase; letter-spacing:.02em; font-size:30px; margin-bottom:4px; }
+  .ios-greeting p{ font-family:'Permanent Marker',cursive; font-size:16px; color:var(--blue); max-width:32ch; }
 
-  .d-icon{ position:absolute; }
-  .d-icon, .app-icon{
-    background:none; border:none; cursor:pointer;
-    display:flex; flex-direction:column; align-items:center; gap:8px;
-    width: 84px;
-  }
-  .d-icon .icon-glyph, .app-icon .icon-glyph{
-    width: 52px; height: 52px;
-    border-radius: 30% / 32%;
-    display:flex; align-items:center; justify-content:center;
-    color:#fff;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-    transition: transform .15s ease;
-  }
-  .d-icon:hover .icon-glyph{ transform: translateY(-2px) scale(1.04); }
-  .d-icon:active .icon-glyph{ transform: scale(0.96); }
-  .d-icon span, .app-icon span{
-    font-size: 12px;
-    color: #fff;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.45);
-    text-align:center;
-  }
-  .d-icon .icon-glyph svg, .app-icon .icon-glyph svg{ width: 24px; height:24px; }
-  .icon-glyph .icon-img{
-    width: 60%;
-    height: 60%;
-    object-fit: contain;
-    -webkit-user-drag: none;
-    pointer-events: none;
-  }
+  /* --- icone: SPARSE, NON RUOTATE, LEGGERMENTE SOVRAPPOSTE --- */
+  .app-grid{ display:block; position:relative; height:64vh; min-height:460px; margin-top:6px; }
+  .app-icon{ position:absolute; width:76px; gap:6px; transition:transform .16s cubic-bezier(.2,.9,.25,1.3); }
+  .app-icon:active{ transform:translateY(1px) scale(.94); z-index:99; }
+  .app-icon .icon-glyph{ width:60px; height:60px; margin:0 auto; }
+  .app-icon span{ font-size:11px; }
 
-  .dock{
-    position:absolute;
-    bottom: 18px; left:50%;
-    transform: translateX(-50%);
-    display:flex;
-    align-items:flex-end;
-    gap: 14px;
-    padding: 10px 16px;
-    background: rgba(255,255,255,0.18);
-    backdrop-filter: blur(16px);
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.25);
+  .ios-dock{
+    position:fixed; bottom:18px; left:50%; transform:translateX(-50%);
+    width:calc(100% - 32px); max-width:420px;
+    display:flex; justify-content:space-around; padding:12px 18px;
+    background:var(--ink); border-radius:16px; box-shadow:4px 4px 0 rgba(18,18,18,.3), inset 0 0 0 2px var(--acid);
+    z-index:25;
   }
-  .dock-icon{
-    width: 44px; height: 44px;
-    border-radius: 30%;
-    display:flex; align-items:center; justify-content:center;
-    color:#fff;
-    border: none; cursor:pointer;
-    transition: transform .15s ease;
-  }
-  .dock-icon:hover{ transform: translateY(-6px) scale(1.08); }
-  .dock-icon svg{ width:20px; height:20px; flex-shrink:0; }
-  .dock-icon .icon-img{
-    width: 55%;
-    height: 55%;
-    object-fit: contain;
-    -webkit-user-drag: none;
-    pointer-events: none;
-  }
+  .ios-dock .dock-icon{ width:48px; height:48px; border-radius:13px; }
 
-  /* ---------------- FILE ICONS (foto/video/audio) ---------------- */
+  .window{ position:fixed; inset:0; width:100%; max-height:none; border-radius:0; border:none; box-shadow:none; z-index:60; transform:translateY(5%); }
+  .window.show{ transform:translateY(0); }
+  .window-titlebar{ padding:16px 18px; padding-top:max(16px, env(safe-area-inset-top)); }
+  .chrome{ display:none; }
+  .back-btn{ display:flex; }
+  .works-grid{ grid-template-columns:1fr 1fr; }
+  .notes-app{ height:calc(100vh - 60px); }
+  .notes-list{ width:130px; }
+  .notes-list-item .n-preview{ display:none; }
+  .track-row{ flex-wrap:wrap; }
+  .track-row audio{ order:4; width:100%; max-width:none; margin-top:6px; }
+}
 
-  .file-icon .icon-glyph{
-    width: 52px; height: 52px;
-    border-radius: 6px;
-    background: #fff;
-    border: 1px solid rgba(0,0,0,0.08);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-    position: relative;
-    overflow: hidden;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .file-thumb-photo{
-    background: linear-gradient(180deg, #BFE0F0 0%, #BFE0F0 58%, #6FAE6B 58%, #6FAE6B 100%);
-    width:100%; height:100%;
-  }
-  .file-thumb-photo::after{
-    content:"";
-    position:absolute;
-    right: 8px; top: 8px;
-    width: 12px; height:12px;
-    border-radius:50%;
-    background:#F4D35E;
-  }
-  .file-thumb-video{
-    width:100%; height:100%;
-    background: #1B1E20;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .file-thumb-video svg{ width:20px; height:20px; }
-  .file-thumb-audio{
-    width:100%; height:100%;
-    background: linear-gradient(155deg, #241645, #5A2FBF);
-    display:flex; align-items:center; justify-content:center;
-  }
-  .file-thumb-audio svg{ width:22px; height:22px; }
-
-  /* ---------------- QUICK LOOK ---------------- */
-
-  .qlook{
-    position: fixed;
-    top:50%; left:50%;
-    width: min(560px, 88vw);
-    max-height: 80vh;
-    background: #1C1E1F;
-    border-radius: 14px;
-    box-shadow: 0 30px 70px rgba(0,0,0,0.45);
-    z-index: 55;
-    display:none;
-    flex-direction: column;
-    overflow: hidden;
-    transform: translate(-50%,-50%) scale(0.82);
-    opacity: 0;
-    transition: transform .32s cubic-bezier(.2,.9,.25,1.25), opacity .22s ease;
-  }
-  .qlook.open{ display:flex; }
-  .qlook.show{ transform: translate(-50%,-50%) scale(1); opacity:1; }
-  .qlook-close{
-    position:absolute; top:10px; right:10px;
-    width: 26px; height:26px;
-    border-radius:50%;
-    background: rgba(255,255,255,0.12);
-    border:none; color:#fff; cursor:pointer;
-    font-size:14px; line-height:1;
-    z-index: 2;
-  }
-  .qlook-media{
-    flex:1;
-    display:flex; align-items:center; justify-content:center;
-    background:#000;
-    min-height: 260px;
-  }
-  .qlook-media img{ width:100%; height:100%; object-fit:contain; display:block; }
-  .qlook-media video{ width:100%; max-height: 60vh; display:block; }
-  .qlook-media.audio-view{
-    background: linear-gradient(155deg, #241645, #5A2FBF);
-    flex-direction:column; gap:18px; padding: 30px;
-  }
-  .qlook-media.audio-view svg{ width:56px; height:56px; }
-  .qlook-media.audio-view audio{ width: 100%; max-width: 340px; }
-  .qlook-caption{
-    padding: 10px 16px;
-    font-size: 12.5px;
-    color: #C9CDCE;
-    background: #1C1E1F;
-    border-top: 1px solid rgba(255,255,255,0.08);
-  }
-  .dock-icon.text{ font-size: 12px; font-weight:600; }
-
-  /* ---------------- WINDOWS ---------------- */
-
-  .backdrop{
-    position:fixed; inset:0;
-    background: rgba(10,14,13,0.35);
-    z-index: 40;
-    opacity:0; pointer-events:none;
-    transition: opacity .2s ease;
-  }
-  .backdrop.show{ opacity:1; pointer-events:auto; }
-
-  .window{
-    position: fixed;
-    top: 50%; left:50%;
-    transform: translate(-50%,-50%) scale(0.9);
-    opacity: 0;
-    width: min(640px, 88vw);
-    max-height: 74vh;
-    background: var(--panel);
-    border-radius: var(--radius);
-    box-shadow: 0 24px 60px rgba(0,0,0,0.35);
-    z-index: 50;
-    display:none;
-    flex-direction: column;
-    overflow: hidden;
-    transition: transform .3s cubic-bezier(.2,.9,.25,1.2), opacity .2s ease;
-  }
-  .window.open{ display:flex; }
-  .window.show{ transform: translate(-50%,-50%) scale(1); opacity:1; }
-  .window.wide{ width: min(760px, 90vw); }
-
-  .window-titlebar{
-    display:flex; align-items:center; gap:12px;
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--line);
-    flex-shrink:0;
-  }
-  .chrome{ display:flex; gap:8px; }
-  .chrome button{
-    width:12px; height:12px; border-radius:50%; border:none; cursor:pointer; padding:0;
-  }
-  .dot-red{ background:#E5564C; }
-  .dot-amber{ background:#E8B23D; }
-  .dot-green{ background:#4EAE7D; }
-  .window-title{ font-size: 13px; color: var(--ink-soft); }
-  .back-btn{
-    display:none;
-    background:none; border:none; cursor:pointer;
-    font-size: 14px; color: var(--deep); font-weight:600;
-    align-items:center; gap:4px;
-  }
-
-  .window-body{
-    padding: 20px 22px 24px;
-    overflow-y:auto;
-  }
-  .window-body p{ color: var(--ink-soft); font-size:14px; line-height:1.7; max-width: 58ch; }
-
-  .note-item{ padding: 10px 0; border-bottom: 1px dashed var(--line); font-size:13px; }
-  .note-item:last-child{ border-bottom:none; }
-  .note-date{ display:block; font-size:11px; color: var(--ink-soft); margin-bottom:2px; }
-
-  .works-grid{
-    display:grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 14px;
-    margin-top: 4px;
-  }
-  .work-card{ border-radius: 10px; overflow:hidden; border:1px solid var(--line); }
-  .work-thumb{
-    aspect-ratio: 4/5;
-    opacity:.92;
-  }
-  .work-meta{ padding: 10px 12px; }
-  .work-title{ font-family:'Fraunces', serif; font-size:14px; display:block; }
-  .work-tag{ font-size:11px; color: var(--ink-soft); }
-
-  /* ---------------- NOTES APP ---------------- */
-
-  #win-notes .window-body{ padding:0; }
-  .notes-app{ display:flex; height: 46vh; min-height: 320px; }
-  .notes-list{
-    width: 190px;
-    flex-shrink:0;
-    background: #F6F5F1;
-    border-right: 1px solid var(--line);
-    overflow-y:auto;
-  }
-  .notes-list-item{
-    display:block;
-    width:100%;
-    text-align:left;
-    background:none;
-    border:none;
-    border-bottom: 1px solid var(--line);
-    padding: 12px 14px;
-    cursor:pointer;
-  }
-  .notes-list-item .n-title{
-    font-family:'Fraunces', serif;
-    font-size: 13.5px;
-    display:block;
-    margin-bottom: 3px;
-  }
-  .notes-list-item .n-preview{
-    font-size: 11.5px;
-    color: var(--ink-soft);
-    display:block;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-  }
-  .notes-list-item.active{ background: #FCEFC7; }
-  .notes-detail{
-    flex:1;
-    padding: 20px 22px;
-    overflow-y:auto;
-  }
-  .notes-detail .n-date{
-    font-size: 11px;
-    color: var(--ink-soft);
-    margin-bottom: 10px;
-    display:block;
-  }
-  .notes-detail .n-body{
-    font-family:'Fraunces', serif;
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--ink);
-  }
-
-  /* ---------------- MUSICA APP ---------------- */
-
-  .track-list{ display:flex; flex-direction:column; gap: 2px; }
-  .track-row{
-    display:flex; align-items:center; gap:12px;
-    padding: 10px 8px;
-    border-bottom: 1px solid var(--line);
-  }
-  .track-row:last-child{ border-bottom:none; }
-  .track-num{ width:18px; font-size:12px; color: var(--ink-soft); flex-shrink:0; }
-  .track-icon{
-    width:34px; height:34px; border-radius:8px;
-    display:flex; align-items:center; justify-content:center;
-    color:#fff; flex-shrink:0;
-  }
-  .track-icon svg{ width:16px; height:16px; }
-  .track-info{ flex:1; min-width:0; }
-  .track-name{ font-size: 13.5px; display:block; }
-  .track-sub{ font-size: 11px; color: var(--ink-soft); }
-  .track-row audio{
-    height: 30px;
-    max-width: 150px;
-  }
-  .music-note{
-    font-size: 12.5px;
-    color: var(--ink-soft);
-    margin-bottom: 14px;
-    padding: 10px 12px;
-    background: #F6F5F1;
-    border-radius: 8px;
-  }
-
-  /* ================= MOBILE (iOS) ================= */
-
-  .ios-status, .ios-home{ display:none; }
-
-  @media (max-width: 860px){
-    .menubar, .desktop, .dock{ display:none; }
-
-    body{ overflow-y: auto; height:auto; min-height:100vh; }
-
-    .ios-status{
-      display:flex; justify-content:space-between; align-items:center;
-      padding: 14px 22px 4px;
-      font-size: 13px;
-      background: linear-gradient(180deg, #E4EAE6, transparent);
-    }
-
-    .ios-home{
-      display:block;
-      min-height: 100vh;
-      background:
-        linear-gradient(160deg, rgba(10,12,11,0.42), rgba(10,12,11,0.52)),
-        url('../assets/images/sfondo-desktop.jpg');
-      background-size: cover;
-      background-position: center;
-      padding: 10px 22px 110px;
-    }
-
-    .ios-greeting{ padding: 18px 4px 26px; color:#fff; }
-    .ios-greeting h1{
-      font-family:'Fraunces', serif; font-weight:500;
-      font-size: 26px; margin-bottom:6px;
-    }
-    .ios-greeting p{ font-size: 13px; opacity:.85; max-width: 34ch; }
-
-    .app-grid{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 22px 10px;
-    }
-    .app-icon .icon-glyph{ width:56px; height:56px; border-radius:26%; margin: 0 auto; }
-    .app-icon span{ font-size: 11px; }
-
-    .ios-dock{
-      position: fixed;
-      bottom: 18px; left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - 32px);
-      max-width: 420px;
-      display:flex;
-      justify-content: space-around;
-      padding: 12px 18px;
-      background: rgba(255,255,255,0.22);
-      backdrop-filter: blur(18px);
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.3);
-      z-index: 25;
-    }
-    .ios-dock .dock-icon{ width:48px; height:48px; border-radius:26%; }
-
-    .window{
-      position: fixed; inset: 0;
-      width:100%; max-height:none; border-radius:0;
-      z-index: 60;
-      transform: translateY(5%);
-    }
-    .window.show{ transform: translateY(0); }
-    .window-titlebar{ padding: 16px 18px; padding-top: max(16px, env(safe-area-inset-top)); }
-    .chrome{ display:none; }
-    .back-btn{ display:flex; }
-    .works-grid{ grid-template-columns: 1fr 1fr; }
-    .notes-app{ height: calc(100vh - 60px); }
-    .notes-list{ width: 130px; }
-    .notes-list-item .n-preview{ display:none; }
-    .track-row{ flex-wrap: wrap; }
-    .track-row audio{ order:4; width:100%; max-width:none; margin-top:6px; }
-  }
-
-  @media (max-width: 380px){
-    .app-grid{ grid-template-columns: repeat(3,1fr); }
-  }
+@media (prefers-reduced-motion:reduce){
+  .app-icon,.d-icon .icon-glyph,.dock-icon{ transition:none; }
+}

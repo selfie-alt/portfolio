@@ -1,0 +1,20 @@
+CARTELLE ASSET — dove mettere i tuoi file
+=========================================
+
+assets/icons/    -> le icone PNG (sfondo trasparente, ~256x256)
+                    about.png  notes.png  foto.png  design.png
+                    musica.png pittura.png
+                    instagram.png photoshop.png illustrator.png premiere.png
+
+assets/images/   -> foto street photography e sfondo eventuale
+                    scatto-01.jpg  (usata nel Quick Look)
+
+assets/video/    -> i video
+                    reel-01.mp4
+
+assets/audio/    -> i tuoi mp3 (dj set / beat)
+                    beat-01.mp3  track-01.mp3  track-02.mp3  track-03.mp3
+
+Finche' un file manca, il sito mostra il colore/placeholder al suo posto
+(le foto usano i gradienti, il Quick Look mostra un messaggio).
+I nomi file sono configurabili in js/main.js e index.html.
