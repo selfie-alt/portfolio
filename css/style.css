@@ -31,12 +31,8 @@ body{
   color:var(--ink);
   -webkit-font-smoothing:antialiased;
   height:100vh; overflow:hidden;
-  /* wallpaper Sonoma-like, tutto in CSS */
-  background:
-    radial-gradient(120% 90% at 12% 8%,  rgba(255,255,255,.35), transparent 46%),
-    radial-gradient(120% 100% at 88% 14%, rgba(255,210,235,.55), transparent 48%),
-    radial-gradient(130% 120% at 50% 108%,rgba(150,240,220,.5),  transparent 52%),
-    linear-gradient(158deg, #5B7CFA 0%, #8A6FE8 40%, #C77DC0 68%, #F3A183 100%);
+  /* wallpaper: foto reale, a copertura intera e sempre centrata */
+  background: url('../assets/backgroundofficial.png') center center / cover no-repeat fixed;
 }
 a{ color:inherit; text-decoration:none; }
 button{ font-family:inherit; }
@@ -53,21 +49,7 @@ svg{ display:block; }
 
 /* ================= DESKTOP (macOS) ================= */
 
-.menubar{
-  position:fixed; top:0; left:0; right:0; height:28px;
-  display:flex; align-items:center; justify-content:space-between; padding:0 16px;
-  background:var(--glass);
-  backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
-  border-bottom:1px solid var(--line);
-  box-shadow:inset 0 1px 0 var(--hairline);
-  font-size:13px; z-index:30; color:var(--ink);
-}
-.mb-left{ display:flex; align-items:center; gap:8px; font-weight:600; }
-.mb-left .dot{ width:12px; height:12px; border-radius:50%;
-  background:radial-gradient(circle at 35% 30%, #fff, #c9c9c9 60%, #9a9a9a); box-shadow:0 0 0 .5px rgba(0,0,0,.15); }
-.mb-right{ color:var(--ink); font-weight:500; font-variant-numeric:tabular-nums; }
-
-.desktop{ position:fixed; inset:28px 0 0 0; overflow:hidden; }
+.desktop{ position:fixed; inset:0; overflow:hidden; }
 .desktop-icons{ position:absolute; inset:0; }
 
 .d-icon{ position:absolute; }
@@ -254,7 +236,7 @@ svg{ display:block; }
 .ios-status, .ios-home, .ios-dock{ display:none; }
 
 @media (max-width:860px){
-  .menubar, .desktop, .dock{ display:none; }
+  .desktop, .dock{ display:none; }
   body{ overflow-y:auto; height:auto; min-height:100vh; }
 
   .ios-status{
@@ -262,14 +244,10 @@ svg{ display:block; }
     padding:14px 24px 4px; font-size:14px; font-weight:600; color:#fff;
     text-shadow:0 1px 2px rgba(0,0,0,.3);
   }
-  .ios-home{ display:block; min-height:100vh; position:relative; padding:10px 20px 120px; }
-
-  .ios-greeting{ padding:16px 4px 20px; color:#fff; position:relative; z-index:1; }
-  .ios-greeting h1{ font-size:30px; font-weight:700; letter-spacing:-.02em; margin-bottom:6px; text-shadow:0 2px 8px rgba(0,0,0,.28); }
-  .ios-greeting p{ font-size:14px; opacity:.95; max-width:32ch; text-shadow:0 1px 4px rgba(0,0,0,.28); }
+  .ios-home{ display:block; min-height:100vh; position:relative; padding:28px 20px 120px; }
 
   /* --- icone: SPARSE, NON RUOTATE, LEGGERMENTE SOVRAPPOSTE --- */
-  .app-grid{ display:block; position:relative; height:62vh; min-height:460px; margin-top:6px; }
+  .app-grid{ display:block; position:relative; height:70vh; min-height:460px; margin-top:6px; }
   .app-icon{ position:absolute; width:80px; gap:7px; transform:translateX(-50%); transition:transform .18s cubic-bezier(.2,.8,.2,1); }
   .app-icon:active{ transform:translateX(-50%) scale(.92); z-index:99; }
   .app-icon .icon-glyph{ width:62px; height:62px; margin:0 auto; }
