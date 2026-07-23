@@ -7,12 +7,12 @@
 
 // Icone "app" del desktop / home iOS
 const DESKTOP_APPS = [
-  { id:'about',   label:'About Me',  icon:'assets/icons/folder.png', window:'about'  },
-  { id:'notes',   label:'Notes',     icon:'assets/icons/notes.png',  window:'notes'  },
-  { id:'foto',    label:'Street Ph.',icon:'assets/icons/folder.png', window:'foto'   },
-  { id:'design',  label:'Design',    icon:'assets/icons/folder.png', window:'design' },
-  { id:'musica',  label:'Musica',    icon:'assets/icons/musica.png', window:'musica' },
-  { id:'pittura', label:'Pittura',   icon:'assets/icons/folder.png', window:'pittura'},
+  { id:'about',   label:'About Me',  icon:'assets/icons/folder.png',      window:'about'  },
+  { id:'notes',   label:'Notes',     icon:'assets/icons/notes_icon.png',  window:'notes'  },
+  { id:'foto',    label:'Street Ph.',icon:'assets/icons/folder.png',      window:'foto'   },
+  { id:'design',  label:'Design',    icon:'assets/icons/folder_icon.png', window:'design' },
+  { id:'musica',  label:'Music',     icon:'assets/icons/am_icon.png',     window:'musica' },
+  { id:'pittura', label:'Painting',  icon:'assets/icons/folder_icon.png', window:'pittura'},
 ];
 const DESKTOP_ICON_COUNT = 6;
 
@@ -24,13 +24,14 @@ const FILE_ICONS = [
 ];
 const SHOW_FILE_ICONS = true;
 
-// Dock: SOLO Instagram, Illustrator, Photoshop
+// Dock: Mail, Instagram, Photoshop, Illustrator — in questo ordine, da sinistra a destra.
 const DOCK_APPS = [
-  { id:'instagram',   label:'Instagram',   icon:'assets/icons/instagram.png',   href:'#' },
-  { id:'illustrator', label:'Illustrator', icon:'assets/icons/illustrator.png', href:'#' },
-  { id:'photoshop',   label:'Photoshop',   icon:'assets/icons/photoshop.png',   href:'#' },
+  { id:'mail',        label:'Mail',        icon:'assets/icons/dock/mail_icon.png', href:'mailto:denniedelfin@gmail.com' },
+  { id:'instagram',   label:'Instagram',   icon:'assets/icons/dock/ig_icon.png',   href:'#' },
+  { id:'photoshop',   label:'Photoshop',   icon:'assets/icons/dock/ps_icon.png',   href:'#' },
+  { id:'illustrator', label:'Illustrator', icon:'assets/icons/dock/il_icon.png',   href:'#' },
 ];
-const DOCK_ICON_COUNT = 3;
+const DOCK_ICON_COUNT = 4;
 
 // Quanto si sovrappongono le icone sul mobile (0 = griglia pulita, 1 = molto accavallate)
 const MOBILE_OVERLAP = 0.6;
@@ -145,8 +146,12 @@ function renderDesktopIcons(){
 }
 
 function dockIconMarkup(app){
-  return `<a class="dock-icon" href="${app.href||'#'}" target="_blank" rel="noopener" title="${app.label}">
-    <img class="icon-img" src="${app.icon}" alt="${app.label}">
+  const isMail = (app.href || '').startsWith('mailto:');
+  const linkAttrs = isMail ? '' : 'target="_blank" rel="noopener"';
+  return `<a class="dock-icon" href="${app.href||'#'}" ${linkAttrs} title="${app.label}">
+    <span class="dock-icon-mask">
+      <img class="icon-img" src="${app.icon}" alt="${app.label}">
+    </span>
   </a>`;
 }
 
@@ -163,7 +168,10 @@ function renderMobileGrid(){
   const apps = DESKTOP_APPS.slice(0, Math.min(DESKTOP_ICON_COUNT, DESKTOP_APPS.length));
   const files = SHOW_FILE_ICONS ? FILE_ICONS : [];
   const total = apps.length + files.length;
-  const positions = scatterOverlap(total, 7, MOBILE_OVERLAP);
+  // seed scelto perché mantiene la distanza minima tra tutte le icone (incluse
+  // Notes e Painting, che con il seed precedente finivano quasi sovrapposte
+  // sul layout mobile e diventavano difficili da toccare separatamente)
+  const positions = scatterOverlap(total, 1652, MOBILE_OVERLAP);
 
   let html = '', i = 0;
   apps.forEach(app => {
