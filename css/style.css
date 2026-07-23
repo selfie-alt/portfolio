@@ -26,12 +26,8 @@ body{
   color:var(--ink);
   -webkit-font-smoothing:antialiased;
   height:100vh; overflow:hidden;
-  /* wallpaper Sonoma-like, tutto in CSS */
-  background:
-    radial-gradient(120% 90% at 12% 8%,  rgba(255,255,255,.35), transparent 46%),
-    radial-gradient(120% 100% at 88% 14%, rgba(255,210,235,.55), transparent 48%),
-    radial-gradient(130% 120% at 50% 108%,rgba(150,240,220,.5),  transparent 52%),
-    linear-gradient(158deg, #5B7CFA 0%, #8A6FE8 40%, #C77DC0 68%, #F3A183 100%);
+  /* wallpaper: foto personale */
+  background: url('../assets/images/wallpaper.jpg') center/cover no-repeat fixed;
 }
 a{ color:inherit; text-decoration:none; }
 button{ font-family:inherit; }
